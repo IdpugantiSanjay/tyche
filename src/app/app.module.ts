@@ -16,11 +16,17 @@ import {
   MatSelectModule,
   MatOptionModule,
   MatRadioButton,
-  MatRadioModule
+  MatRadioModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { RecordListComponent } from './record-list/record-list.component';
 import { NumericDirective } from './directives/numeric.directive';
 import { MaxLengthDirective } from './directives/max-length.directive';
+import { NewRecordComponent } from './new-record/new-record.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,8 @@ import { MaxLengthDirective } from './directives/max-length.directive';
     HomeComponent,
     RecordListComponent,
     NumericDirective,
-    MaxLengthDirective
+    MaxLengthDirective,
+    NewRecordComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,13 @@ import { MaxLengthDirective } from './directives/max-length.directive';
     MatCardModule,
     MatSelectModule,
     MatOptionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

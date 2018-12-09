@@ -1,0 +1,80 @@
+<div class="container" align="center">
+  <mat-card class="card">
+    <mat-card-content>
+      <form>
+        <p>
+          <mat-form-field style="width: 120px">
+            <mat-select placeholder="Record Type">
+              <mat-option
+                *ngFor="let recordType of recordTypes"
+                [value]="recordType.value"
+              >
+                {{ recordType.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <mat-form-field style="width: 250px">
+            <mat-select placeholder="Category">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field style="width: 120px">
+            <mat-label>Amount</mat-label>
+            <input matInput placeholder="120" /> <span matPrefix>&#8377;&nbsp;</span>
+            <span matSuffix> . </span>
+          </mat-form-field>
+          <mat-form-field style="width: 25px">
+            <input matInput value="00" />
+          </mat-form-field>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <mat-form-field style="width: 250px">
+            <mat-label>Reason</mat-label>
+            <input matInput placeholder="Dinner at favorite restaurant" />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          &nbsp; &nbsp;
+          <mat-form-field style="width: 45px">
+            <mat-select [(value)]="defaultHour">
+              <mat-option *ngFor="let hour of hours" [value]="hour">
+                {{ hour }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp; &nbsp;
+          <mat-form-field style="width: 40px">
+            <mat-select [(value)]="defaultMins">
+              <mat-option *ngFor="let min of mins" [value]="min"> {{ min }} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp; &nbsp;
+          <mat-form-field style="width: 50px">
+            <mat-select [(value)]="defaultPeriod">
+              <mat-option *ngFor="let period of periods" [value]="period">
+                {{ period }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <div style="padding: 0.5%">
+          <button mat-raised-button color="primary">Submit</button> &nbsp;
+          <button mat-raised-button>Submit+</button> &nbsp;
+          <button mat-raised-button color="warn">Clear</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
