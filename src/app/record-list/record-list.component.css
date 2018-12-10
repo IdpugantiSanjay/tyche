@@ -1,5 +1,5 @@
 .container {
-  display: flex;
+  /* display: flex; */
 }
 
 .content {
@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 350px);
 
-  grid-template-rows: 120px repeat(auto-fit, 250px);
+  grid-template-rows: repeat(auto-fit, 250px);
   /* grid-column-gap: 2em; */
   /* grid-row-gap: 2em; */
 
@@ -36,11 +36,15 @@ mat-card {
   grid-column: 1/-1;
   /* background-color: black; */
   display: flex;
+  /* flex-direction: column; */
 
+  padding: 1%;
   /* text-align: center; */
 
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* overflow: hidden; */
 }
 
 .filter {
@@ -51,13 +55,25 @@ mat-card {
 }
 
 .today {
+  flex: 1;
+  flex-shrink: 0;
 }
 
 .week {
+  flex: 1;
+  flex-shrink: 1;
 }
 
 .month {
+  flex: 1;
+  flex-shrink: 1;
 }
 
 .year {
+  flex: 1;
+  flex-shrink: 1;
+}
+
+.statistics > * :hover {
+  cursor: pointer;
 }

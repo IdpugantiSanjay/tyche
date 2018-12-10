@@ -1,0 +1,17 @@
+.container {
+}
+
+mat-card {
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  /* padding: 10%; */
+}
+
+.card {
+  max-width: 500px;
+  min-width: 270px;
+}
+
+.form-width {
+  width: 30%;
+}
