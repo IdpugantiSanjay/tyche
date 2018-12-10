@@ -16,8 +16,11 @@
           &nbsp; &nbsp; &nbsp; &nbsp;
           <mat-form-field style="width: 250px">
             <mat-select placeholder="Category">
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{ food.viewValue }}
+              <mat-option
+                *ngFor="let category of (categories$ | async)"
+                [value]="category.name"
+              >
+                {{ category.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
