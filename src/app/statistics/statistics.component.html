@@ -1,0 +1,18 @@
+<header class="statistics">
+  <div class="ui statistic today">
+    <div class="value">{{ todayTotal | async }}&#8377;</div>
+    <div class="label">THIS TODAY</div>
+  </div>
+  <div class="ui statistic week">
+    <div class="value">{{ weekTotal | async }}&#8377;</div>
+    <div class="label">THIS WEEK</div>
+  </div>
+  <div class="ui statistic month">
+    <div class="value">{{ thisMonthTotal | async }}&#8377;</div>
+    <div class="label">THIS MONTH</div>
+  </div>
+  <div class="ui statistic year">
+    <div class="value">{{ thisYearTotal | async }}&#8377;</div>
+    <div class="label">THIS YEAR</div>
+  </div>
+</header>

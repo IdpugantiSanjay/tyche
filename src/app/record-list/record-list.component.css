@@ -32,49 +32,9 @@ mat-card {
   -moz-border-radius: 0 !important;
 }
 
-.statistics {
-  padding-top: 1%;
-  grid-column: 1/-1;
-  /* background-color: black; */
-  display: flex;
-  /* flex-direction: column; */
-
-  padding: 1%;
-  /* text-align: center; */
-
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  /* overflow: hidden; */
-}
-
 .filter {
   margin: 2% 2% 2% 2%;
   flex: 1;
   background-color: black;
   height: 100%;
-}
-
-.today {
-  flex: 1;
-  flex-shrink: 0;
-}
-
-.week {
-  flex: 1;
-  flex-shrink: 1;
-}
-
-.month {
-  flex: 1;
-  flex-shrink: 1;
-}
-
-.year {
-  flex: 1;
-  flex-shrink: 1;
-}
-
-.statistics > * :hover {
-  cursor: pointer;
 }

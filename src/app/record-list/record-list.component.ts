@@ -20,24 +20,6 @@ export class RecordListComponent implements OnInit {
 
   ngOnInit() {
     this.records = this.recordsService.searchRecords();
-
-    const today = new Date();
-    const tommorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-    const [thisYear, thisMonth] = [today.getFullYear(), today.getMonth()];
-
-    this.thisMonthTotal = this.recordsService.getTotalAmount(
-      new Date(thisYear, thisMonth, 1),
-      new Date(thisYear, thisMonth + 1, 0)
-    ) as Observable<number>;
-
-    today.setHours(0, 0, 0, 0);
-    tommorrow.setHours(0, 0, 0);
-    this.todayTotal = this.recordsService.getTotalAmount(today, tommorrow) as Observable<number>;
-
-    this.thisYearTotal = this.recordsService.getTotalAmount(
-      new Date(thisYear, 0, 1),
-      new Date(thisYear, 11, 31)
-    ) as Observable<number>;
   }
 
   // event listners
@@ -47,8 +29,8 @@ export class RecordListComponent implements OnInit {
   }
 
   public onTodayClick() {
-    this.recordsService
-      .getTotalAmount(new Date(2018, 0, 1), new Date(2019, 0, 1))
-      .subscribe(serviceResponse => console.log(serviceResponse));
+    // this.recordsService
+    //   .getTotalAmount(new Date(2018, 0, 1), new Date(2019, 0, 1))
+    //   .subscribe(serviceResponse => console.log(serviceResponse));
   }
 }

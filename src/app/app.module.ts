@@ -29,6 +29,7 @@ import { NewRecordComponent } from "./new-record/new-record.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RecordComponent } from './record/record.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RecordComponent } from './record/record.component';
     NumericDirective,
     MaxLengthDirective,
     NewRecordComponent,
-    RecordComponent
+    RecordComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

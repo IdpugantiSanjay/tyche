@@ -5,6 +5,8 @@ import { user, localhostUrl } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { RecordsService } from '../services/records.service';
 import { IRecord } from '../models/record';
+import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export interface Food {
   value: string;
@@ -28,7 +30,7 @@ export class NewRecordComponent implements OnInit {
 
   categories$: Observable<any>;
 
-  constructor(private httpService: HttpService, private recordsService: RecordsService) {
+  constructor(private httpService: HttpService, private recordsService: RecordsService, private router: Router) {
     this.form = new FormGroup({
       type: new FormControl(2, Validators.compose([Validators.required])),
       category: new FormControl('Food and Drinks', Validators.compose([Validators.required])),
@@ -49,7 +51,7 @@ export class NewRecordComponent implements OnInit {
   }
 
   onSubmitButtonClick() {
-    this.recordsService.createRecord(this.record).subscribe(response => console.log(response));
+    this.recordsService.createRecord(this.record).subscribe(() => this.router.navigateByUrl('/home/list'));
   }
 
   get record(): IRecord {
