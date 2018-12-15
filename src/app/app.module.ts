@@ -28,6 +28,7 @@ import { MaxLengthDirective } from "./directives/max-length.directive";
 import { NewRecordComponent } from "./new-record/new-record.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { RecordComponent } from './record/record.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from "@angular/common/http";
     RecordListComponent,
     NumericDirective,
     MaxLengthDirective,
-    NewRecordComponent
+    NewRecordComponent,
+    RecordComponent
   ],
   imports: [
     BrowserModule,

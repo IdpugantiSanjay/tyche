@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RecordsService } from '../services/records.service';
+import { IRecord, Records } from '../models/record';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-record-list',
@@ -6,25 +9,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./record-list.component.css']
 })
 export class RecordListComponent implements OnInit {
-  months = ['January', 'Febuary'];
+  records: Observable<Records>;
 
-  constructor() {}
+  todayTotal: Observable<number>;
+  thisWeekTotal: Observable<number>;
+  thisMonthTotal: Observable<number>;
+  thisYearTotal: Observable<number>;
 
-  ngOnInit() {}
+  constructor(private recordsService: RecordsService) {}
 
-  onValueFocusEvent(event: Event) {
-    (event.target as any).innerHTML = (event.target as any).innerHTML
-      .trim()
-      .replace('₹', '');
+  ngOnInit() {
+    this.records = this.recordsService.searchRecords();
+
+    const today = new Date();
+    const tommorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+    const [thisYear, thisMonth] = [today.getFullYear(), today.getMonth()];
+
+    this.thisMonthTotal = this.recordsService.getTotalAmount(
+      new Date(thisYear, thisMonth, 1),
+      new Date(thisYear, thisMonth + 1, 0)
+    ) as Observable<number>;
+
+    today.setHours(0, 0, 0, 0);
+    tommorrow.setHours(0, 0, 0);
+    this.todayTotal = this.recordsService.getTotalAmount(today, tommorrow) as Observable<number>;
+
+    this.thisYearTotal = this.recordsService.getTotalAmount(
+      new Date(thisYear, 0, 1),
+      new Date(thisYear, 11, 31)
+    ) as Observable<number>;
   }
 
-  onValueBlurEvent(event: Event) {
-    const value = (event.target as any).innerHTML;
+  // event listners
 
-    if (value) {
-      (event.target as any).innerHTML = (event.target as any).innerHTML.trim() + '₹';
-    } else {
-      (event.target as any).innerHTML = '0₹';
-    }
+  public onRecordDelete(record: IRecord) {
+    this.recordsService.deleteRecord(record).subscribe(serviceResponse => console.log(serviceResponse));
+  }
+
+  public onTodayClick() {
+    this.recordsService
+      .getTotalAmount(new Date(2018, 0, 1), new Date(2019, 0, 1))
+      .subscribe(serviceResponse => console.log(serviceResponse));
   }
 }

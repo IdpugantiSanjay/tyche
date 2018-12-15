@@ -1,148 +1,74 @@
 <div class="container">
   <header class="statistics">
-    <div class="ui statistic today">
-      <div class="value">25&#8377;</div>
-      <div class="label">Today</div>
+    <div class="ui statistic today" (click)="onTodayClick()">
+      <div class="value">{{ todayTotal | async }}&#8377;</div>
+      <div class="label">THIS Today</div>
     </div>
     <div class="ui statistic week">
       <div class="value">250&#8377;</div>
-      <div class="label">Week</div>
+      <div class="label">THIS Week</div>
     </div>
     <div class="ui statistic month">
-      <div class="value">2500&#8377;</div>
-      <div class="label">Month</div>
+      <div class="value">{{ thisMonthTotal | async }}&#8377;</div>
+      <div class="label">THIS Month</div>
     </div>
     <div class="ui statistic year">
-      <div class="value">25000&#8377;</div>
-      <div class="label">Year</div>
+      <div class="value">{{ thisYearTotal | async }}&#8377;</div>
+      <div class="label">THIS Year</div>
     </div>
   </header>
   <main class="content">
-    <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title
-          contenteditable="true"
-          numeric
-          [maxLength]="5"
-          (focus)="onValueFocusEvent($event)"
-          (blur)="onValueBlurEvent($event)"
-        >
-          95&#8377;
-        </mat-card-title>
-        <mat-card-subtitle>Food and Drinks</mat-card-subtitle>
-      </mat-card-header>
+    <!--
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title
+            contenteditable="true"
+            numeric
+            [maxLength]="5"
+            (focus)="onValueFocusEvent($event)"
+            (blur)="onValueBlurEvent($event)"
+          >
+            95&#8377;
+          </mat-card-title>
+          <mat-card-subtitle>Food and Drinks</mat-card-subtitle>
+        </mat-card-header>
 
-      <mat-card-content>
-        <div
-          style="max-height: 100px; overflow: hidden; min-height: 100px"
-          contenteditable="true"
-        >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae pariatur quas
-          impedit, esse fugit, laboriosam sequi sit quia necessitatibus aliquid quaerat,
-          mollitia unde consequuntur voluptates ut inventore fugiat autem consectetur?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus vel
-          cumque veniam minima sint modi! Odio consequatur dolorem illum natus, voluptate
-          deleniti, voluptatem rerum provident culpa, consectetur pariatur exercitationem
-          nihil quo aperiam magni aut velit. Sunt qui similique fugiat aut!
-        </div>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button><i class="material-icons"> delete </i></button>
-        <button mat-button><i class="material-icons"> edit </i></button>
-      </mat-card-actions>
-    </mat-card>
+        <mat-card-content>
+          <div style="max-height: 100px; overflow: hidden; min-height: 100px" contenteditable="true">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae pariatur quas impedit, esse fugit, laboriosam
+            sequi sit quia necessitatibus aliquid quaerat, mollitia unde consequuntur voluptates ut inventore fugiat autem
+            consectetur? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus vel cumque veniam minima
+            sint modi! Odio consequatur dolorem illum natus, voluptate deleniti, voluptatem rerum provident culpa,
+            consectetur pariatur exercitationem nihil quo aperiam magni aut velit. Sunt qui similique fugiat aut!
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button><i class="material-icons"> delete </i></button>
+          <button mat-button><i class="material-icons"> edit </i></button>
+        </mat-card-actions>
+      </mat-card>
+    -->
 
-    <mat-card class="card">
-      <mat-card-header> <mat-card-title> 2 </mat-card-title> </mat-card-header>
-      <mat-card-content>
-        <div style="max-height: 100px; overflow: hidden; min-height: 100px">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae pariatur quas
-          impedit, esse fugit, laboriosam sequi sit quia necessitatibus aliquid quaerat,
-          mollitia unde consequuntur voluptates ut inventore fugiat autem consectetur?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus vel
-          cumque veniam minima sint modi! Odio consequatur dolorem illum natus, voluptate
-          deleniti, voluptatem rerum provident culpa, consectetur pariatur exercitationem
-          nihil quo aperiam magni aut velit. Sunt qui similique fugiat aut!
-        </div>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button><i class="material-icons"> delete </i></button>
-        <button mat-button><i class="material-icons"> edit </i></button>
-      </mat-card-actions>
-    </mat-card>
+    <!--
+      <ng-container *ngFor="let record of (records | async)">
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title> {{ record.value }}&#8377; </mat-card-title>
+            <mat-card-subtitle>{{ record.category }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div style="max-height: 100px; overflow: hidden; min-height: 50px">{{ record.description }}</div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button><i class="material-icons"> delete </i></button>
+            <button mat-button><i class="material-icons"> edit </i></button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    -->
 
-    <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title> 480&#8377; </mat-card-title>
-
-        <mat-card-subtitle>Travel</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div style="max-height: 100px; overflow: hidden; min-height: 100px">Sanjay</div>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button><i class="material-icons"> delete </i></button>
-        <button mat-button><i class="material-icons"> edit </i></button>
-      </mat-card-actions>
-    </mat-card>
-
-    <mat-card class="card">
-      <mat-card-header> <mat-card-title> 4 </mat-card-title> </mat-card-header>
-      <mat-card-content>
-        <div style="max-height: 100px; overflow: hidden; min-height: 100px;">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae pariatur quas
-          impedit, esse fugit, laboriosam sequi sit quia necessitatibus aliquid quaerat,
-          mollitia unde consequuntur voluptates ut inventore fugiat autem consectetur?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus vel
-          cumque veniam minima sint modi! Odio consequatur dolorem illum natus, voluptate
-          deleniti, voluptatem rerum provident culpa, consectetur pariatur exercitationem
-          nihil quo aperiam magni aut velit. Sunt qui similique fugiat aut!
-        </div>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button><i class="material-icons"> delete </i></button>
-        <button mat-button><i class="material-icons"> edit </i></button>
-      </mat-card-actions>
-    </mat-card>
-
-    <mat-card class="card">
-      <mat-card-header> <mat-card-title> 1 </mat-card-title> </mat-card-header>
-
-      <mat-card-content>
-        <div style="max-height: 100px; overflow: hidden; min-height: 100px">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae pariatur quas
-          impedit, esse fugit, laboriosam sequi sit quia necessitatibus aliquid quaerat,
-          mollitia unde consequuntur voluptates ut inventore fugiat autem consectetur?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus vel
-          cumque veniam minima sint modi! Odio consequatur dolorem illum natus, voluptate
-          deleniti, voluptatem rerum provident culpa, consectetur pariatur exercitationem
-          nihil quo aperiam magni aut velit. Sunt qui similique fugiat aut!
-        </div>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button><i class="material-icons"> delete </i></button>
-        <button mat-button><i class="material-icons"> edit </i></button>
-      </mat-card-actions>
-    </mat-card>
-
-    <mat-card class="card">
-      <mat-card-header> <mat-card-title> 1 </mat-card-title> </mat-card-header>
-
-      <mat-card-content>
-        <div style="max-height: 100px; overflow: hidden; min-height: 100px">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae pariatur quas
-          impedit, esse fugit, laboriosam sequi sit quia necessitatibus aliquid quaerat,
-          mollitia unde consequuntur voluptates ut inventore fugiat autem consectetur?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus vel
-          cumque veniam minima sint modi! Odio consequatur dolorem illum natus, voluptate
-          deleniti, voluptatem rerum provident culpa, consectetur pariatur exercitationem
-          nihil quo aperiam magni aut velit. Sunt qui similique fugiat aut!
-        </div>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button><i class="material-icons"> delete </i></button>
-        <button mat-button><i class="material-icons"> edit </i></button>
-      </mat-card-actions>
-    </mat-card>
+    <ng-container *ngFor="let record of (records | async)">
+      <record [data]="record" (delete)="onRecordDelete($event)"></record>
+    </ng-container>
   </main>
 </div>
