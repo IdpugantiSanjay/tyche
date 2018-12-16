@@ -16,6 +16,11 @@ export class StatisticsComponent implements OnInit {
   constructor(private recordsService: RecordsService) {}
 
   ngOnInit() {
+    this.initializeStatistics();
+    this.recordsService.changed$.subscribe(() => this.initializeStatistics());
+  }
+
+  private initializeStatistics() {
     this.todayTotal = this.recordsService.getTotalAmount(...this.dayRange) as Observable<number>;
     this.weekTotal = this.recordsService.getTotalAmount(...this.weekRange) as Observable<number>;
     this.thisMonthTotal = this.recordsService.getTotalAmount(...this.monthRange) as Observable<number>;
@@ -48,6 +53,8 @@ export class StatisticsComponent implements OnInit {
     const firstday = new Date(curr.setDate(first));
     const lastday = new Date(curr.setDate(last));
 
+    firstday.setHours(0, 0, 0);
+    lastday.setHours(0, 0, 0);
     return [firstday, lastday];
   }
 }

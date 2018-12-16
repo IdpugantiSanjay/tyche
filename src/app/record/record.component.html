@@ -7,7 +7,7 @@
     <div style="max-height: 100px; overflow: hidden; min-height: 50px">{{ record.description }}</div>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-button><i class="material-icons" (click)="onDeleteButtonClick()"> delete </i></button>
+    <button mat-button (click)="onDeleteButtonClick()"><i class="material-icons"> delete </i></button>
     <button mat-button><i class="material-icons"> edit </i></button>
   </mat-card-actions>
 </mat-card>
