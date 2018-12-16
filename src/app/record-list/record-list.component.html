@@ -1,7 +1,7 @@
 <div class="container">
   <statistics></statistics>
   <main class="content">
-    <ng-container *ngFor="let record of (records | async)">
+    <ng-container *ngFor="let record of (records$ | async)">
       <record [data]="record" (delete)="onRecordDelete($event)"></record>
     </ng-container>
   </main>

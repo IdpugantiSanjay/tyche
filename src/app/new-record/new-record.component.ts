@@ -5,8 +5,8 @@ import { user, localhostUrl } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { RecordsService } from '../services/records.service';
 import { IRecord } from '../models/record';
-import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import * as _ from 'lodash';
 
 export interface Food {
   value: string;
@@ -46,8 +46,8 @@ export class NewRecordComponent implements OnInit {
   }
 
   ngOnInit() {
-    for (let i = 1; i <= 12; i++) this.hours.push(i);
-    for (let i = 0; i <= 60; i++) this.mins.push(i.toString().padStart(2, '0'));
+    [this.hours, this.mins] = [this.generateHours(), this.generateMins()];
+    console.log(this.hours, this.mins);
   }
 
   onSubmitButtonClick() {
@@ -65,12 +65,26 @@ export class NewRecordComponent implements OnInit {
   }
 
   get time(): Date {
-    const date = this.form.controls['date'].value as Date;
-    const hours = this.form.controls['hour'].value || 0;
-    const mins = this.form.controls['mins'].value || 0;
+    const date = this.formGroupHelper.getValue('date') as Date;
+    const hours = this.formGroupHelper.getValue<number>('hour') || 0;
+    const mins = this.formGroupHelper.getValue<number>('mins') || 0;
 
     date.setHours(hours, mins);
     return date;
+  }
+
+  /**
+   * Generate hours in a day
+   */
+  generateHours() {
+    return _.range(1, 12 + 1);
+  }
+
+  /**
+   * Generate mins in an hour
+   */
+  generateMins() {
+    return _.map(_.range(0, 60 + 1), number => number.toString().padStart(2, '0'));
   }
 }
 
