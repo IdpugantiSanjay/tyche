@@ -7,6 +7,7 @@ import { RecordsService } from '../services/records.service';
 import { IRecord } from '../models/record';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
+import { FormGroupHelper } from '../helpers/form-group-helper';
 
 export interface Food {
   value: string;
@@ -24,30 +25,21 @@ export class NewRecordComponent implements OnInit {
   form: FormGroup;
   formGroupHelper: FormGroupHelper;
 
-  hours = [];
-  mins = [];
+  hours: Array<number>;
+  mins: Array<string>;
+
   periods = ['AM', 'PM'];
 
   categories$: Observable<any>;
 
-  constructor(private httpService: HttpService, private recordsService: RecordsService, private router: Router) {
-    this.form = new FormGroup({
-      type: new FormControl(2, Validators.compose([Validators.required])),
-      category: new FormControl('Food and Drinks', Validators.compose([Validators.required])),
-      amount: new FormControl('', Validators.compose([Validators.required])),
-      reason: new FormControl('', Validators.maxLength(120)),
-      date: new FormControl(new Date()),
-      hour: new FormControl(new Date().getHours() % 12),
-      mins: new FormControl(new Date().getMinutes() + ''),
-      period: new FormControl('PM')
-    });
-    this.formGroupHelper = new FormGroupHelper(this.form);
-    this.categories$ = this.httpService.getRequest(`${localhostUrl}${user.name}/categories`);
-  }
+  constructor(private httpService: HttpService, private recordsService: RecordsService, private router: Router) {}
 
   ngOnInit() {
     [this.hours, this.mins] = [this.generateHours(), this.generateMins()];
-    console.log(this.hours, this.mins);
+
+    this.form = this.formGroup;
+    this.formGroupHelper = new FormGroupHelper(this.form);
+    this.categories$ = this.httpService.getRequest(`${localhostUrl}${user.name}/categories`);
   }
 
   onSubmitButtonClick() {
@@ -73,6 +65,19 @@ export class NewRecordComponent implements OnInit {
     return date;
   }
 
+  get formGroup() {
+    return new FormGroup({
+      type: new FormControl(2, Validators.compose([Validators.required])),
+      category: new FormControl('Food and Drinks', Validators.compose([Validators.required])),
+      amount: new FormControl('', Validators.compose([Validators.required])),
+      reason: new FormControl('', Validators.maxLength(120)),
+      date: new FormControl(new Date()),
+      hour: new FormControl(new Date().getHours() % 12),
+      mins: new FormControl(new Date().getMinutes() + ''),
+      period: new FormControl('PM')
+    });
+  }
+
   /**
    * Generate hours in a day
    */
@@ -85,21 +90,5 @@ export class NewRecordComponent implements OnInit {
    */
   generateMins() {
     return _.map(_.range(0, 60 + 1), number => number.toString().padStart(2, '0'));
-  }
-}
-
-export class FormGroupHelper {
-  private formGroup: FormGroup;
-
-  constructor(formGroup: FormGroup) {
-    this.formGroup = formGroup;
-  }
-
-  getValue<T>(propertyName: string): T {
-    if (!this.formGroup.contains(propertyName)) {
-      throw new Error('No form control with name ' + propertyName);
-    }
-
-    return this.formGroup.controls[propertyName].value;
   }
 }

@@ -23,13 +23,13 @@
         <p>
           <mat-form-field style="width: 120px">
             <mat-label>Amount</mat-label>
-            <input matInput placeholder="120" formControlName="amount" /> <span matPrefix>&#8377;&nbsp;</span>
-            <span matSuffix> .00 </span>
+            <input matInput numeric maxlength="5" placeholder="120" formControlName="amount" />
+            <span matPrefix>&#8377;&nbsp;</span> <span matSuffix> .00 </span>
           </mat-form-field>
           &nbsp; &nbsp; &nbsp; &nbsp;
           <mat-form-field style="width: 250px">
             <mat-label>Reason</mat-label>
-            <input matInput placeholder="Dinner at favorite restaurant" formControlName="reason" />
+            <input maxlength="32" matInput placeholder="Dinner at favorite restaurant" formControlName="reason" />
           </mat-form-field>
         </p>
 

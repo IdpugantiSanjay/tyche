@@ -1,11 +1,11 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, ErrorHandler } from '@angular/core';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HomeComponent } from "./home/home.component";
-import { LayoutModule } from "@angular/cdk/layout";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -20,16 +20,19 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatDatepickerModule,
-  MatNativeDateModule
-} from "@angular/material";
-import { RecordListComponent } from "./record-list/record-list.component";
-import { NumericDirective } from "./directives/numeric.directive";
-import { MaxLengthDirective } from "./directives/max-length.directive";
-import { NewRecordComponent } from "./new-record/new-record.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+  MatNativeDateModule,
+  MatSnackBarModule
+} from '@angular/material';
+import { RecordListComponent } from './record-list/record-list.component';
+import { NumericDirective } from './directives/numeric.directive';
+import { MaxLengthDirective } from './directives/max-length.directive';
+import { NewRecordComponent } from './new-record/new-record.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RecordComponent } from './record/record.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { HttpErrorHandlerService } from './services/http-error-handler.service';
+import { ErrorHandlerService } from './services/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -62,9 +65,17 @@ import { StatisticsComponent } from './statistics/statistics.component';
     ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    ErrorHandler,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorHandlerService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -15,20 +15,6 @@ export class RecordComponent implements OnInit {
 
   ngOnInit() {}
 
-  // onValueFocusEvent(event: Event) {
-  //   (event.target as any).innerHTML = (event.target as any).innerHTML.trim().replace('₹', '');
-  // }
-
-  // onValueBlurEvent(event: Event) {
-  //   const value = (event.target as any).innerHTML;
-
-  //   if (value) {
-  //     (event.target as any).innerHTML = (event.target as any).innerHTML.trim() + '₹';
-  //   } else {
-  //     (event.target as any).innerHTML = '0₹';
-  //   }
-  // }
-
   public onDeleteButtonClick() {
     this.eventEmitter.emit(this.record);
   }
