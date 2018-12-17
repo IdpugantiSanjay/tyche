@@ -32,7 +32,6 @@
             <input maxlength="38" matInput placeholder="Dinner at favorite restaurant" formControlName="reason" />
           </mat-form-field>
         </p>
-
         <p>
           <mat-form-field>
             <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date" />
@@ -70,4 +69,58 @@
       </form>
     </mat-card-content>
   </mat-card>
+
+  <!-- <mat-card class="card" style="margin-top: 5%; height: 100px;">
+    <mat-checkbox color="primary"> Remind Me Every </mat-checkbox> &nbsp; &nbsp;
+
+    <mat-form-field style="width: 120px">
+      <mat-select>
+        <mat-option *ngFor="let option of spanOptions" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp; &nbsp; at &nbsp; &nbsp;
+    <mat-form-field style="width: 120px">
+      <mat-select>
+        <mat-option *ngFor="let option of weekOptions" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+  <div class="card" style="margin-top: 5%;">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Set Remainder Settings
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+          
+        </mat-panel-description> -->
+        </mat-expansion-panel-header>
+
+        <mat-checkbox color="primary"> Remind Me Every </mat-checkbox> &nbsp; &nbsp;
+
+        <mat-form-field style="width: 120px">
+          <mat-select>
+            <mat-option *ngFor="let option of spanOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        &nbsp; &nbsp; at &nbsp; &nbsp;
+        <mat-form-field style="width: 120px">
+          <mat-select>
+            <mat-option *ngFor="let option of weekOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <!-- </mat-card> -->
 </div>

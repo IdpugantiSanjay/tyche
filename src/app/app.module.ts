@@ -21,7 +21,9 @@ import {
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatCheckboxModule,
+  MatExpansionModule
 } from '@angular/material';
 import { RecordListComponent } from './record-list/record-list.component';
 import { NumericDirective } from './directives/numeric.directive';
@@ -66,7 +68,9 @@ import { ErrorHandlerService } from './services/error-handler.service';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule,
+    MatExpansionModule
   ],
   providers: [
     ErrorHandler,

@@ -28,6 +28,10 @@ export class NewRecordComponent implements OnInit {
   hours: Array<number>;
   mins: Array<string>;
 
+  weekOptions = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  spanOptions = ['Day', 'Week', 'Month'];
+
   periods = ['AM', 'PM'];
 
   categories$: Observable<any>;

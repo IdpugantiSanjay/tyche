@@ -1,7 +1,7 @@
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title> {{ record.value }}&#8377; </mat-card-title>
-    <mat-card-subtitle>{{ record.category }}</mat-card-subtitle>
+    <mat-card-title> {{ record.value }}&#8377; <span class="dot" [ngStyle]="{'background-color': color }">  </span> </mat-card-title>
+    <mat-card-subtitle>{{ record.category }}  </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div style="max-height: 100px; overflow: hidden; min-height: 50px">{{ record.description }}</div>

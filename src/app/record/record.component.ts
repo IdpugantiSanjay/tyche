@@ -9,7 +9,12 @@ import { IRecord } from '../models/record';
 export class RecordComponent implements OnInit {
   @Input('data') record: IRecord;
 
+  @Input('color') color: string;
+
   @Output('delete') eventEmitter = new EventEmitter<IRecord>();
+
+
+
 
   constructor() {}
 

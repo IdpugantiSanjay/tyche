@@ -2,7 +2,7 @@
   <statistics></statistics>
   <main class="content">
     <ng-container *ngFor="let record of (records$ | async)">
-      <record [data]="record" (delete)="onRecordDelete($event)"></record>
+      <record [data]="record" [color]="record.value > 100 ? 'red': record.value > 70 ? 'orange': 'green'" (delete)="onRecordDelete($event)"></record>
     </ng-container>
   </main>
 </div>
