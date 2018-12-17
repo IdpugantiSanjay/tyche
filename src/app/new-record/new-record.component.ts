@@ -46,8 +46,12 @@ export class NewRecordComponent implements OnInit {
     this.recordsService.createRecord(this.record).subscribe(() => this.router.navigateByUrl('/home/list'));
   }
 
+  onClearButtonClick() {
+    this.formGroupHelper.clear();
+  }
+
   get record(): IRecord {
-    let record = {} as IRecord;
+    const record = {} as IRecord;
     record.value = this.formGroupHelper.getValue('amount');
     record.type = this.formGroupHelper.getValue('type');
     record.description = this.formGroupHelper.getValue('reason');

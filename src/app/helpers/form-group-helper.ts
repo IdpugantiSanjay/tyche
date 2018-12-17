@@ -1,5 +1,7 @@
 import { FormGroup } from '@angular/forms';
 
+import * as _ from 'lodash';
+
 export class FormGroupHelper {
   private formGroup: FormGroup;
 
@@ -13,5 +15,10 @@ export class FormGroupHelper {
     }
 
     return this.formGroup.controls[propertyName].value;
+  }
+
+
+  clear() {
+    Object.keys(this.formGroup.value).forEach(field => this.formGroup.get(field).setValue(''));
   }
 }
