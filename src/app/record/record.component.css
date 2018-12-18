@@ -4,11 +4,15 @@
   max-height: 175px;
 }
 
-
 .dot {
   height: 10px;
   width: 10px;
   background-color: red;
   border-radius: 50%;
   display: inline-block;
+}
+
+mat-card-subtitle > * {
+  padding-left: 5%;
+  padding-right: 5%;
 }
