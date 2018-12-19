@@ -36,6 +36,7 @@ import { RecordComponent } from "./record/record.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
 import { HttpErrorHandlerService } from "./services/http-error-handler.service";
 import { ErrorHandlerService } from "./services/error-handler.service";
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ErrorHandlerService } from "./services/error-handler.service";
     MaxLengthDirective,
     NewRecordComponent,
     RecordComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

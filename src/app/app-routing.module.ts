@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RecordListComponent } from './record-list/record-list.component';
 import { NewRecordComponent } from './new-record/new-record.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'new-record',
         component: NewRecordComponent
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
       }
     ]
   }
