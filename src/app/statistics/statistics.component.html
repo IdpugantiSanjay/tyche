@@ -1,6 +1,8 @@
 <header class="statistics">
   <div class="ui statistic today">
-    <div class="value">{{ todayTotal | async }}&#8377;</div>
+    <div class="value" [ngStyle]="{ color: (todayTotal | async) < 0 ? 'red' : 'black' }">
+      {{ todayTotal | async }}&#8377;
+    </div>
     <div class="label">TODAY</div>
     <div style="max-width: 100px; padding-left: 30%">
       <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
@@ -8,21 +10,27 @@
   </div>
 
   <div class="ui statistic week">
-    <div class="value">{{ weekTotal | async }}&#8377;</div>
+    <div class="value" [ngStyle]="{ color: (weekTotal | async) < 0 ? 'red' : 'black' }">
+      {{ weekTotal | async }}&#8377;
+    </div>
     <div class="label">THIS WEEK</div>
     <div style="max-width: 100px; padding-left: 30%">
       <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
     </div>
   </div>
   <div class="ui statistic month">
-    <div class="value">{{ thisMonthTotal | async }}&#8377;</div>
+    <div class="value" [ngStyle]="{ color: (thisMonthTotal | async) < 0 ? 'red' : 'black' }">
+      {{ thisMonthTotal | async }}&#8377;
+    </div>
     <div class="label">THIS MONTH</div>
     <div style="max-width: 100px; padding-left: 30%">
       <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
     </div>
   </div>
   <div class="ui statistic year">
-    <div class="value">{{ thisYearTotal | async }}&#8377;</div>
+    <div class="value" [ngStyle]="{ color: (thisYearTotal | async) < 0 ? 'red' : 'black' }">
+      {{ thisYearTotal | async }}&#8377;
+    </div>
     <div class="label">THIS YEAR</div>
     <div style="max-width: 100px; padding-left: 30%">
       <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
