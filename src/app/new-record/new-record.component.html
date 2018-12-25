@@ -29,12 +29,20 @@
           &nbsp; &nbsp; &nbsp; &nbsp;
           <mat-form-field style="width: 250px">
             <mat-label>Reason</mat-label>
-            <input maxlength="38" matInput placeholder="Dinner at favorite restaurant" formControlName="reason" />
+            <input maxlength="36" matInput placeholder="Dinner at favorite restaurant" formControlName="reason" />
           </mat-form-field>
         </p>
         <p>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date" />
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Choose a date"
+              formControlName="date"
+              date
+              maxlength="10"
+              (blur)="validateDate($event.value)"
+            />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -57,6 +65,11 @@
             </mat-select>
           </mat-form-field>
         </p>
+
+        <!-- <mat-form-field>
+          <input [ngxTimepicker]="picker" />
+          <ngx-material-timepicker #picker></ngx-material-timepicker>
+        </mat-form-field> -->
 
         <div style="padding: 0.5%">
           <button mat-raised-button color="primary" (click)="onSubmitButtonClick()" [disabled]="!form.valid">
@@ -93,9 +106,7 @@
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            Set Remainder Settings
-          </mat-panel-title>
+          <mat-panel-title> Set Remainder Settings </mat-panel-title>
           <!-- <mat-panel-description>
           
         </mat-panel-description> -->
@@ -105,17 +116,13 @@
 
         <mat-form-field style="width: 120px">
           <mat-select>
-            <mat-option *ngFor="let option of spanOptions" [value]="option">
-              {{ option }}
-            </mat-option>
+            <mat-option *ngFor="let option of spanOptions" [value]="option"> {{ option }} </mat-option>
           </mat-select>
         </mat-form-field>
         &nbsp; &nbsp; at &nbsp; &nbsp;
         <mat-form-field style="width: 120px">
           <mat-select>
-            <mat-option *ngFor="let option of weekOptions" [value]="option">
-              {{ option }}
-            </mat-option>
+            <mat-option *ngFor="let option of weekOptions" [value]="option"> {{ option }} </mat-option>
           </mat-select>
         </mat-form-field>
       </mat-expansion-panel>

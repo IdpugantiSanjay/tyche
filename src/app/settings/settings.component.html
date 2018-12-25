@@ -3,9 +3,7 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title> Budgets </mat-panel-title>
-        <mat-panel-description>
-          Set daily, weekly, monthly, yearly budgets
-        </mat-panel-description>
+        <mat-panel-description> Set daily, weekly, monthly, yearly budgets </mat-panel-description>
       </mat-expansion-panel-header>
 
       <p>
@@ -37,4 +35,5 @@
       <button mat-raised-button color="primary">Save</button>
     </mat-expansion-panel>
   </mat-accordion>
+  <p><button mat-raised-button color="primary" (click)="onExportButtonClick()">Export</button></p>
 </div>

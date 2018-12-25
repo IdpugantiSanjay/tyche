@@ -3,7 +3,7 @@ import { HttpService } from './http.service';
 import { IRecord, Records } from '../models/record';
 import { recordUrl } from 'src/environments/environment';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +39,13 @@ export class RecordsService {
     });
 
     return this.httpService.getRequest(`${this.endpoint}/total`, httpParams);
+  }
+
+  public exportRecords() {
+    return this.httpService.getRequest(
+      `${this.endpoint}/export`,
+      undefined,
+      new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8')
+    );
   }
 }

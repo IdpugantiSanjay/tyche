@@ -7,8 +7,7 @@ import { switchMap, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-record-list',
   templateUrl: './record-list.component.html',
-  styleUrls: ['./record-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./record-list.component.css']
 })
 export class RecordListComponent implements OnInit {
   records$: Observable<Records>;

@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Subscription, Observable } from 'rxjs';
 import { user, localhostUrl } from 'src/environments/environment';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RecordsService } from '../services/records.service';
 import { IRecord } from '../models/record';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { FormGroupHelper } from '../helpers/form-group-helper';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 export interface Food {
   value: string;
@@ -36,7 +37,12 @@ export class NewRecordComponent implements OnInit {
 
   categories$: Observable<any>;
 
-  constructor(private httpService: HttpService, private recordsService: RecordsService, private router: Router) {}
+  constructor(
+    private httpService: HttpService,
+    private recordsService: RecordsService,
+    private router: Router,
+    private notificationService: ErrorHandlerService
+  ) {}
 
   ngOnInit() {
     [this.hours, this.mins] = [this.generateHours(), this.generateMins()];
@@ -69,7 +75,9 @@ export class NewRecordComponent implements OnInit {
     const hours = this.formGroupHelper.getValue<number>('hour') || 0;
     const mins = this.formGroupHelper.getValue<number>('mins') || 0;
 
-    date.setHours(hours, mins);
+    const period = this.formGroupHelper.getValue<string>('period');
+
+    date.setHours(period === 'PM' ? hours + 12 : hours, mins);
     return date;
   }
 
@@ -79,7 +87,7 @@ export class NewRecordComponent implements OnInit {
       category: new FormControl('Food and Drinks', Validators.compose([Validators.required])),
       amount: new FormControl('', Validators.compose([Validators.required])),
       reason: new FormControl('', Validators.maxLength(120)),
-      date: new FormControl(new Date()),
+      date: new FormControl(new Date(), Validators.required),
       hour: new FormControl(new Date().getHours() % 12),
       mins: new FormControl(new Date().getMinutes() + ''),
       period: new FormControl('PM')
@@ -99,4 +107,31 @@ export class NewRecordComponent implements OnInit {
   generateMins() {
     return _.map(_.range(0, 60 + 1), number => number.toString().padStart(2, '0'));
   }
+
+  validateDate(dateString: string) {
+    isValidDate(dateString) ? this.notificationService.handleError('Invalid date') : null;
+  }
+}
+
+// Validates that the input string is a valid date formatted as "mm/dd/yyyy"
+function isValidDate(dateString) {
+  // First check for the pattern
+  if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) return false;
+
+  // Parse the date parts to integers
+  var parts = dateString.split('/');
+  var day = parseInt(parts[1], 10);
+  var month = parseInt(parts[0], 10);
+  var year = parseInt(parts[2], 10);
+
+  // Check the ranges of month and year
+  if (year < 1000 || year > 3000 || month == 0 || month > 12) return false;
+
+  var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  // Adjust for leap years
+  if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) monthLength[1] = 29;
+
+  // Check the range of the day
+  return day > 0 && day <= monthLength[month - 1];
 }
