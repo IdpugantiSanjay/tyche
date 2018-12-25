@@ -1,4 +1,4 @@
-<mat-card class="card" (mouseover)="showButtonsEvent()" (mouseleave)="hideButtonsEvent()">
+<mat-card class="card" (mouseover)="this.isFocused = true" (mouseleave)="this.isFocused = false">
   <mat-card-header>
     <mat-card-title>
       {{ record.value }}&#8377; <span class="dot" [ngStyle]="{ 'background-color': color }"> </span>

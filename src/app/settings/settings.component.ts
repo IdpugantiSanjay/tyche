@@ -18,6 +18,10 @@ export class SettingsComponent implements OnInit {
   }
 }
 
+/**
+ * Download a csv file
+ * @param base64String
+ */
 function downloadCSV(base64String: string) {
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/csv;charset=utf-8,' + atob(base64String));

@@ -56,6 +56,9 @@ export class NewRecordComponent implements OnInit {
     this.recordsService.createRecord(this.record).subscribe(() => this.router.navigateByUrl('/home/list'));
   }
 
+  /**
+   * clear all form field values
+   */
   onClearButtonClick() {
     this.formGroupHelper.clear();
   }

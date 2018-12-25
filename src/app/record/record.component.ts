@@ -20,12 +20,4 @@ export class RecordComponent implements OnInit {
   public onDeleteButtonClick() {
     this.eventEmitter.emit(this.record);
   }
-
-  showButtonsEvent() {
-    this.isFocused = true;
-  }
-
-  hideButtonsEvent() {
-    this.isFocused = false;
-  }
 }
