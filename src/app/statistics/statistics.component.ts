@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { RecordsService } from '../services/records.service';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from "@angular/core";
+import { RecordsService } from "../services/records.service";
+import { Observable } from "rxjs";
+import { Budget } from "../models/budget";
+import { BudgetService } from "../services/budget.service";
 
 @Component({
-  selector: 'statistics',
-  templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.css']
+  selector: "statistics",
+  templateUrl: "./statistics.component.html",
+  styleUrls: ["./statistics.component.css"]
 })
 export class StatisticsComponent implements OnInit {
   thisMonthTotal: Observable<number>;
@@ -13,18 +15,38 @@ export class StatisticsComponent implements OnInit {
   thisYearTotal: Observable<number>;
   weekTotal: Observable<number>;
 
-  constructor(private recordsService: RecordsService) {}
+  budgets = {};
+
+  constructor(
+    private recordsService: RecordsService,
+    private budgetService: BudgetService
+  ) {}
 
   ngOnInit() {
+    console.log(this.budgets);
     this.initializeStatistics();
     this.recordsService.changed$.subscribe(() => this.initializeStatistics());
+
+    this.budgetService.budgets().subscribe((budgets: Budget[]) => {
+      for (const budget of budgets) {
+        this.budgets[budget.name] = budget.value;
+      }
+    });
   }
 
   private initializeStatistics() {
-    this.todayTotal = this.recordsService.getTotalAmount(...this.dayRange) as Observable<number>;
-    this.weekTotal = this.recordsService.getTotalAmount(...this.weekRange) as Observable<number>;
-    this.thisMonthTotal = this.recordsService.getTotalAmount(...this.monthRange) as Observable<number>;
-    this.thisYearTotal = this.recordsService.getTotalAmount(...this.yearRange) as Observable<number>;
+    this.todayTotal = this.recordsService.getTotalAmount(...this.dayRange) as Observable<
+      number
+    >;
+    this.weekTotal = this.recordsService.getTotalAmount(...this.weekRange) as Observable<
+      number
+    >;
+    this.thisMonthTotal = this.recordsService.getTotalAmount(
+      ...this.monthRange
+    ) as Observable<number>;
+    this.thisYearTotal = this.recordsService.getTotalAmount(
+      ...this.yearRange
+    ) as Observable<number>;
   }
 
   get dayRange(): [Date, Date] {

@@ -3,37 +3,69 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title> Budgets </mat-panel-title>
-        <mat-panel-description> Set daily, weekly, monthly, yearly budgets </mat-panel-description>
+        <mat-panel-description>
+          Set daily, weekly, monthly, yearly budgets
+        </mat-panel-description>
       </mat-expansion-panel-header>
+      <form [formGroup]="form">
+        <p>
+          &nbsp; &nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Daily Budget</mat-label>
+            <input
+              matInput
+              placeholder="Daily Budget"
+              numeric
+              maxlength="5"
+              formControlName="dailyBudget"
+            />
+          </mat-form-field>
 
-      <p>
-        &nbsp; &nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>Daily Budget</mat-label>
-          <input matInput placeholder="Daily Budget" />
-        </mat-form-field>
+          &nbsp; &nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Weekly Budget</mat-label>
+            <input
+              matInput
+              placeholder="Weekly Budget"
+              numeric
+              maxlength="5"
+              formControlName="weeklyBudget"
+            />
+          </mat-form-field>
 
-        &nbsp; &nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>Weekly Budget</mat-label>
-          <input matInput placeholder="Weekly Budget" />
-        </mat-form-field>
+          &nbsp; &nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Monthly Budget</mat-label>
+            <input
+              matInput
+              placeholder="Monthly Budget"
+              numeric
+              maxlength="5"
+              formControlName="monthlyBudget"
+            />
+          </mat-form-field>
 
-        &nbsp; &nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>Monthly Budget</mat-label>
-          <input matInput placeholder="Monthly Budget" />
-        </mat-form-field>
-
-        &nbsp; &nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>Yearly Budget</mat-label>
-          <input matInput placeholder="Yearly Budget" />
-        </mat-form-field>
-      </p>
-
-      <button mat-raised-button color="primary">Save</button>
+          &nbsp; &nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Yearly Budget</mat-label>
+            <input
+              matInput
+              placeholder="Yearly Budget"
+              numeric
+              maxlength="5"
+              formControlName="yearlyBudget"
+            />
+          </mat-form-field>
+        </p>
+      </form>
+      <button mat-raised-button color="primary" (click)="onSaveButtonClick()">
+        Save
+      </button>
     </mat-expansion-panel>
   </mat-accordion>
-  <p><button mat-raised-button color="primary" (click)="onExportButtonClick()">Export</button></p>
+  <p>
+    <button mat-raised-button color="primary" (click)="onExportButtonClick()">
+      Export
+    </button>
+  </p>
 </div>
