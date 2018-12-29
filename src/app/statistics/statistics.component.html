@@ -7,8 +7,7 @@
     <div style="max-width: 100px; padding-left: 30%">
       <mat-progress-bar
         mode="determinate"
-        [value]="budgets.dailyBudget"
-        color="red"
+        [value]="(100 * (todayTotal | async)) / budgets.dailyBudget"
       ></mat-progress-bar>
     </div>
   </div>
@@ -19,40 +18,25 @@
     </div>
     <div class="label">THIS WEEK</div>
     <div style="max-width: 100px; padding-left: 30%">
-      <mat-progress-bar
-        mode="determinate"
-        [value]="budgets.weeklyBudget"
-      ></mat-progress-bar>
+      <mat-progress-bar mode="determinate" [value]="(100 * (weekTotal | async)) / budgets.weekly"></mat-progress-bar>
     </div>
   </div>
   <div class="ui statistic month">
-    <div
-      class="value"
-      [ngStyle]="{ color: (thisMonthTotal | async) < 0 ? 'red' : 'black' }"
-    >
+    <div class="value" [ngStyle]="{ color: (thisMonthTotal | async) < 0 ? 'red' : 'black' }">
       {{ thisMonthTotal | async }}&#8377;
     </div>
     <div class="label">THIS MONTH</div>
     <div style="max-width: 100px; padding-left: 30%">
-      <mat-progress-bar
-        mode="determinate"
-        [value]="budgets.monthlyBudget"
-      ></mat-progress-bar>
+      <mat-progress-bar mode="determinate" [value]="budgets.monthlyBudget"></mat-progress-bar>
     </div>
   </div>
   <div class="ui statistic year">
-    <div
-      class="value"
-      [ngStyle]="{ color: (thisYearTotal | async) < 0 ? 'red' : 'black' }"
-    >
+    <div class="value" [ngStyle]="{ color: (thisYearTotal | async) < 0 ? 'red' : 'black' }">
       {{ thisYearTotal | async }}&#8377;
     </div>
     <div class="label">THIS YEAR</div>
     <div style="max-width: 100px; padding-left: 30%">
-      <mat-progress-bar
-        mode="determinate"
-        [value]="budgets.yearlyBudget"
-      ></mat-progress-bar>
+      <mat-progress-bar mode="determinate" [value]="budgets.yearlyBudget"></mat-progress-bar>
     </div>
   </div>
 </header>
