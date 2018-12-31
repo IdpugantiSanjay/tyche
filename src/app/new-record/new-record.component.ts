@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../services/http.service';
-import { Subscription, Observable, of } from 'rxjs';
-import { user, localhostUrl } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RecordsService } from '../services/records.service';
 import { IRecord } from '../models/record';
@@ -28,15 +25,6 @@ export class NewRecordComponent implements OnInit {
   form: FormGroup;
   formGroupHelper: FormGroupHelper;
 
-  hours: Array<number>;
-  mins: Array<string>;
-
-  weekOptions = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-  spanOptions = ['Day', 'Week', 'Month'];
-
-  periods = ['AM', 'PM'];
-
   expenseCategories = [];
   incomeCategories = [];
   categories = [];
@@ -49,8 +37,6 @@ export class NewRecordComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    [this.hours, this.mins] = [this.generateHours(), this.generateMins()];
-
     this.form = this.formGroup;
     this.formGroupHelper = new FormGroupHelper(this.form);
 
@@ -101,13 +87,9 @@ export class NewRecordComponent implements OnInit {
 
   get time(): Date {
     const date = this.formGroupHelper.getValue('date') as Date;
-    const hours = this.formGroupHelper.getValue<number>('hour') || 0;
-    const mins = this.formGroupHelper.getValue<number>('mins') || 0;
+    const time = this.formGroupHelper.getValue('time') as string;
 
-    const period = this.formGroupHelper.getValue<string>('period');
-
-    date.setHours(period === 'PM' ? hours + 12 : hours, mins);
-    return date;
+    return new Date(date.toDateString() + ' ' + time);
   }
 
   get formGroup() {
@@ -117,24 +99,8 @@ export class NewRecordComponent implements OnInit {
       amount: new FormControl('', Validators.compose([Validators.required])),
       reason: new FormControl('', Validators.maxLength(120)),
       date: new FormControl(new Date(), Validators.required),
-      hour: new FormControl(new Date().getHours() % 12),
-      mins: new FormControl(new Date().getMinutes() + ''),
-      period: new FormControl('PM')
+      time: new FormControl(new Date().toTimeString())
     });
-  }
-
-  /**
-   * Generate hours in a day
-   */
-  generateHours() {
-    return _.range(1, 12 + 1);
-  }
-
-  /**
-   * Generate mins in an hour
-   */
-  generateMins() {
-    return _.map(_.range(0, 60 + 1), number => number.toString().padStart(2, '0'));
   }
 
   validateDate(dateString: string) {

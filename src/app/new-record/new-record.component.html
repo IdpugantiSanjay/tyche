@@ -45,22 +45,17 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           &nbsp; &nbsp;
-          <mat-form-field style="width: 45px">
-            <mat-select formControlName="hour">
-              <mat-option *ngFor="let hour of hours" [value]="hour"> {{ hour }} </mat-option>
-            </mat-select>
-          </mat-form-field>
-          &nbsp; &nbsp;
-          <mat-form-field style="width: 40px">
-            <mat-select formControlName="mins">
-              <mat-option *ngFor="let min of mins" [value]="min"> {{ min }} </mat-option>
-            </mat-select>
-          </mat-form-field>
-          &nbsp; &nbsp;
-          <mat-form-field style="width: 50px">
-            <mat-select formControlName="period">
-              <mat-option *ngFor="let period of periods" [value]="period"> {{ period }} </mat-option>
-            </mat-select>
+
+          <mat-form-field>
+            <input
+              placeholder="12hr format (default settings)"
+              aria-label="12hr format"
+              [ngxTimepicker]="default"
+              matInput
+              readonly
+              formControlName="time"
+            />
+            <ngx-material-timepicker #default></ngx-material-timepicker>
           </mat-form-field>
         </p>
 
