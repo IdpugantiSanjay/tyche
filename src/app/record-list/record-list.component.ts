@@ -1,15 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { RecordsService } from "../services/records.service";
-import { IRecord, Records } from "../models/record";
-import { Observable } from "rxjs";
-import { switchMap, tap } from "rxjs/operators";
-import { BudgetService } from "../services/budget.service";
-import { Budget } from "../models/budget";
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { RecordsService } from '../services/records.service';
+import { IRecord, Records } from '../models/record';
+import { Observable } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
-  selector: "app-record-list",
-  templateUrl: "./record-list.component.html",
-  styleUrls: ["./record-list.component.css"]
+  selector: 'app-record-list',
+  templateUrl: './record-list.component.html',
+  styleUrls: ['./record-list.component.css']
 })
 export class RecordListComponent implements OnInit {
   records$: Observable<Records>;
@@ -35,7 +33,7 @@ export class RecordListComponent implements OnInit {
       .deleteRecord(record)
       .pipe(
         tap(() => this.initializeRecords()),
-        tap(() => this.recordsService.recordsModified()) // send signal that records are modified to other subscribed observers
+        tap(() => this.recordsService.recordsModified(true)) // send signal that records are modified to other subscribed observers
       )
       .subscribe();
   }

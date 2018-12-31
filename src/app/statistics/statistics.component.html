@@ -1,14 +1,21 @@
 <header class="statistics">
-  <div class="ui statistic today">
+  <ng-container *ngFor="let stat of (stats$ | async)">
+    <div class="ui statistic">
+      <div class="value" [ngStyle]="{ color: stat.consumed < 0 ? 'red' : 'black' }">{{ stat.consumed }}&#8377;</div>
+      <div class="label">{{ stat.label }}</div>
+      <div style="max-width: 100px; padding-left: 30%">
+        <mat-progress-bar mode="determinate" [value]="stat.percentageConsumed"></mat-progress-bar>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- <div class="ui statistic today">
     <div class="value" [ngStyle]="{ color: (todayTotal | async) < 0 ? 'red' : 'black' }">
       {{ todayTotal | async }}&#8377;
     </div>
     <div class="label">TODAY</div>
     <div style="max-width: 100px; padding-left: 30%">
-      <mat-progress-bar
-        mode="determinate"
-        [value]="(100 * (todayTotal | async)) / budgets.dailyBudget"
-      ></mat-progress-bar>
+      <mat-progress-bar mode="determinate" [value]="budgets.dailyBudget"></mat-progress-bar>
     </div>
   </div>
 
@@ -18,7 +25,7 @@
     </div>
     <div class="label">THIS WEEK</div>
     <div style="max-width: 100px; padding-left: 30%">
-      <mat-progress-bar mode="determinate" [value]="(100 * (weekTotal | async)) / budgets.weekly"></mat-progress-bar>
+      <mat-progress-bar mode="determinate" [value]="budgets.weeklyBudget"></mat-progress-bar>
     </div>
   </div>
   <div class="ui statistic month">
@@ -38,5 +45,5 @@
     <div style="max-width: 100px; padding-left: 30%">
       <mat-progress-bar mode="determinate" [value]="budgets.yearlyBudget"></mat-progress-bar>
     </div>
-  </div>
+  </div> -->
 </header>

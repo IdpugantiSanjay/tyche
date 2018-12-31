@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpService } from "./http.service";
-import { Budget } from "../models/budget";
-import { budgetUrl } from "src/environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpService } from './http.service';
+import { Budget } from '../models/budget';
+import { budgetUrl } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class BudgetService {
   constructor(private httpService: HttpService) {}
@@ -15,5 +15,9 @@ export class BudgetService {
 
   public budgets() {
     return this.httpService.getRequest(`${budgetUrl}`);
+  }
+
+  public consumedBudgets() {
+    return this.httpService.getRequest(`${budgetUrl}/consumed`);
   }
 }
