@@ -4,7 +4,7 @@
       <form [formGroup]="form">
         <p>
           <mat-form-field style="width: 120px">
-            <mat-select placeholder="Record Type" formControlName="type">
+            <mat-select placeholder="Record Type" formControlName="type" (selectionChange)="onRecordTypeChange($event)">
               <mat-option *ngFor="let recordType of recordTypes" [value]="recordType.value">
                 {{ recordType.viewValue }}
               </mat-option>
@@ -13,9 +13,7 @@
           &nbsp; &nbsp; &nbsp; &nbsp;
           <mat-form-field style="width: 250px">
             <mat-select placeholder="Category" formControlName="category">
-              <mat-option *ngFor="let category of (categories$ | async)" [value]="category.name">
-                {{ category.name }}
-              </mat-option>
+              <mat-option *ngFor="let category of categories" [value]="category.name"> {{ category.name }} </mat-option>
             </mat-select>
           </mat-form-field>
         </p>
@@ -65,11 +63,6 @@
             </mat-select>
           </mat-form-field>
         </p>
-
-        <!-- <mat-form-field>
-          <input [ngxTimepicker]="picker" />
-          <ngx-material-timepicker #picker></ngx-material-timepicker>
-        </mat-form-field> -->
 
         <div style="padding: 0.5%">
           <button mat-raised-button color="primary" (click)="onSubmitButtonClick()" [disabled]="!form.valid">

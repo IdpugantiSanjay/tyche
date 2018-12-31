@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, of } from 'rxjs';
 import { user, localhostUrl } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RecordsService } from '../services/records.service';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { FormGroupHelper } from '../helpers/form-group-helper';
 import { ErrorHandlerService } from '../services/error-handler.service';
+import { tap } from 'rxjs/operators';
+import { CategoryService } from '../services/category.service';
 
 export interface Food {
   value: string;
@@ -35,10 +37,12 @@ export class NewRecordComponent implements OnInit {
 
   periods = ['AM', 'PM'];
 
-  categories$: Observable<any>;
+  expenseCategories = [];
+  incomeCategories = [];
+  categories = [];
 
   constructor(
-    private httpService: HttpService,
+    private categoryService: CategoryService,
     private recordsService: RecordsService,
     private router: Router,
     private notificationService: ErrorHandlerService
@@ -49,7 +53,17 @@ export class NewRecordComponent implements OnInit {
 
     this.form = this.formGroup;
     this.formGroupHelper = new FormGroupHelper(this.form);
-    this.categories$ = this.httpService.getRequest(`${localhostUrl}${user.name}/categories`);
+
+    this.categoryService
+      .categories('Income')
+      .pipe(tap((categories: any[]) => (this.incomeCategories = categories)))
+      .subscribe();
+
+    this.categoryService
+      .categories('Expense')
+      .pipe(tap((categories: any[]) => (this.expenseCategories = categories)))
+      .pipe(tap((categories: any[]) => (this.categories = categories)))
+      .subscribe();
   }
 
   onSubmitButtonClick() {
@@ -61,6 +75,18 @@ export class NewRecordComponent implements OnInit {
    */
   onClearButtonClick() {
     this.formGroupHelper.clear();
+  }
+
+  public onRecordTypeChange(event: any) {
+    switch (event.value) {
+      case 1:
+        this.categories = this.incomeCategories;
+        break;
+      case 2:
+        this.categories = this.expenseCategories;
+    }
+
+    this.form.controls['category'].setValue(this.categories[0].name);
   }
 
   get record(): IRecord {

@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecordsService } from '../services/records.service';
 import { Observable } from 'rxjs';
-import { Budget } from '../models/budget';
-import { BudgetService } from '../services/budget.service';
-
-import { Range } from '../helpers/range';
-import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'statistics',
@@ -13,7 +8,7 @@ import { map, tap } from 'rxjs/operators';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  stats$: Observable<BudgetConsumption>;
+  stats$: Observable<Array<BudgetConsumption>>;
 
   constructor(private recordsService: RecordsService) {}
 
@@ -23,7 +18,7 @@ export class StatisticsComponent implements OnInit {
   }
 
   private initializeStatistics() {
-    this.stats$ = this.recordsService.statistics() as Observable<BudgetConsumption>;
+    this.stats$ = this.recordsService.statistics() as Observable<Array<BudgetConsumption>>;
   }
 }
 
