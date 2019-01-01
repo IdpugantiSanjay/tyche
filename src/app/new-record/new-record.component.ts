@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RecordsService } from '../services/records.service';
 import { IRecord } from '../models/record';
 import { Router } from '@angular/router';
-import * as _ from 'lodash';
 import { FormGroupHelper } from '../helpers/form-group-helper';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { tap } from 'rxjs/operators';
 import { CategoryService } from '../services/category.service';
-
-export interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-new-record',

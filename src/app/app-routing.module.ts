@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { RecordListComponent } from './record-list/record-list.component';
 import { NewRecordComponent } from './new-record/new-record.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ChartsComponent } from './chart/chart.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent
+      },
+      {
+        path: 'charts',
+        component: ChartsComponent
       }
     ]
   }

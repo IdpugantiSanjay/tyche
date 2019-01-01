@@ -45,6 +45,9 @@ import { environment, publicKey } from '../environments/environment';
 
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
+import { ChartModule, UIChart } from 'primeng/chart';
+import { ChartsComponent } from './chart/chart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +59,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     RecordComponent,
     StatisticsComponent,
     SettingsComponent,
-    DateDirective
+    DateDirective,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +88,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     MatExpansionModule,
     MatProgressBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    NgxMaterialTimepickerModule.forRoot()
+    NgxMaterialTimepickerModule.forRoot(),
+    ChartModule
   ],
   providers: [
     ErrorHandlerService,
