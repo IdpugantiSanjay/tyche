@@ -4,8 +4,15 @@
       <form [formGroup]="form">
         <p>
           <mat-form-field style="width: 120px">
-            <mat-select placeholder="Record Type" formControlName="type" (selectionChange)="onRecordTypeChange($event)">
-              <mat-option *ngFor="let recordType of recordTypes" [value]="recordType.value">
+            <mat-select
+              placeholder="Record Type"
+              formControlName="type"
+              (selectionChange)="onRecordTypeChange($event)"
+            >
+              <mat-option
+                *ngFor="let recordType of recordTypes"
+                [value]="recordType.value"
+              >
                 {{ recordType.viewValue }}
               </mat-option>
             </mat-select>
@@ -13,7 +20,9 @@
           &nbsp; &nbsp; &nbsp; &nbsp;
           <mat-form-field style="width: 250px">
             <mat-select placeholder="Category" formControlName="category">
-              <mat-option *ngFor="let category of categories" [value]="category.name"> {{ category.name }} </mat-option>
+              <mat-option *ngFor="let category of categories" [value]="category.name">
+                {{ category.name }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </p>
@@ -21,13 +30,24 @@
         <p>
           <mat-form-field style="width: 120px">
             <mat-label>Amount</mat-label>
-            <input matInput numeric maxlength="5" placeholder="120" formControlName="amount" />
+            <input
+              matInput
+              numeric
+              maxlength="5"
+              placeholder="120"
+              formControlName="amount"
+            />
             <span matPrefix>&#8377;&nbsp;</span> <span matSuffix> .00 </span>
           </mat-form-field>
           &nbsp; &nbsp; &nbsp; &nbsp;
           <mat-form-field style="width: 250px">
             <mat-label>Reason</mat-label>
-            <input maxlength="36" matInput placeholder="Dinner at favorite restaurant" formControlName="reason" />
+            <input
+              maxlength="36"
+              matInput
+              placeholder="Dinner at favorite restaurant"
+              formControlName="reason"
+            />
           </mat-form-field>
         </p>
         <p>
@@ -48,7 +68,7 @@
 
           <mat-form-field>
             <input
-              placeholder="12hr format (default settings)"
+              placeholder="Time"
               aria-label="12hr format"
               [ngxTimepicker]="default"
               matInput
@@ -60,12 +80,19 @@
         </p>
 
         <div style="padding: 0.5%">
-          <button mat-raised-button color="primary" (click)="onSubmitButtonClick()" [disabled]="!form.valid">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onSubmitButtonClick()"
+            [disabled]="!form.valid"
+          >
             Submit
           </button>
           &nbsp;
           <!-- <button mat-raised-button>Submit+</button> &nbsp; -->
-          <button mat-raised-button color="warn" (click)="onClearButtonClick()">Clear</button>
+          <button mat-raised-button color="warn" (click)="onClearButtonClick()">
+            Clear
+          </button>
         </div>
       </form>
     </mat-card-content>
@@ -104,13 +131,17 @@
 
         <mat-form-field style="width: 120px">
           <mat-select>
-            <mat-option *ngFor="let option of spanOptions" [value]="option"> {{ option }} </mat-option>
+            <mat-option *ngFor="let option of spanOptions" [value]="option">
+              {{ option }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
         &nbsp; &nbsp; at &nbsp; &nbsp;
         <mat-form-field style="width: 120px">
           <mat-select>
-            <mat-option *ngFor="let option of weekOptions" [value]="option"> {{ option }} </mat-option>
+            <mat-option *ngFor="let option of weekOptions" [value]="option">
+              {{ option }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </mat-expansion-panel>

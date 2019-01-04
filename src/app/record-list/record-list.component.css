@@ -5,9 +5,9 @@
 .content {
   flex: 4;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 350px);
+  grid-template-columns: repeat(auto-fit, 300px);
 
-  grid-template-rows: repeat(auto-fit, 250px);
+  /* grid-template-rows: repeat(auto-fit, 250px); */
   /* grid-column-gap: 2em; */
   /* grid-row-gap: 2em; */
 
@@ -15,10 +15,10 @@
 
   /* grid-auto-rows: minmax(100px, auto); */
 
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 
-  margin: 2% 2% 2% 2%;
+  margin: 1% 1% 1% 1%;
 }
 
 .card {

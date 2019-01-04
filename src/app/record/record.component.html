@@ -1,15 +1,26 @@
-<mat-card class="card" (mouseover)="this.isFocused = true" (mouseleave)="this.isFocused = false">
+<mat-card
+  class="card"
+  (mouseover)="this.isFocused = true"
+  (mouseleave)="this.isFocused = false"
+>
   <mat-card-header>
     <mat-card-title>
-      {{ record.value }}&#8377; <span class="dot" [ngStyle]="{ 'background-color': color }"> </span>
+      {{ record.value }}&#8377;
+      <span class="dot" [ngStyle]="{ 'background-color': color }"> </span>
     </mat-card-title>
-    <mat-card-subtitle> {{ record.category }} &nbsp; {{ record.createdDate | date: 'short' }} </mat-card-subtitle>
+    <mat-card-subtitle>
+      {{ record.category }} &nbsp; {{ record.createdDate | date: "short" }}
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <div style="max-height: 100px; overflow: hidden; min-height: 50px">{{ record.description }}</div>
+    <div style="max-height: 30px; overflow: hidden; min-height: 10px">
+      {{ record.description }}
+    </div>
   </mat-card-content>
   <mat-card-actions align="end" [ngClass]="isFocused ? 'show' : 'hide'">
-    <button mat-button (click)="onDeleteButtonClick()"><i class="material-icons"> delete </i></button>
+    <button mat-button (click)="onDeleteButtonClick()">
+      <i class="material-icons"> delete </i>
+    </button>
     <!-- <button mat-button><i class="material-icons"> edit </i></button> -->
   </mat-card-actions>
 </mat-card>
