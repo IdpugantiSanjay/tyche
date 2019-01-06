@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { IRecord, Records } from '../models/record';
-import { recordUrl } from 'src/environments/environment';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpParams, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { localhostUrl, user } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecordsService {
-  private endpoint = recordUrl;
+  private get endpoint() {
+    return `${localhostUrl}${user.name}/records`;
+  }
 
   private recordsChanged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 

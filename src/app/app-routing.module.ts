@@ -5,6 +5,9 @@ import { RecordListComponent } from './record-list/record-list.component';
 import { NewRecordComponent } from './new-record/new-record.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ChartsComponent } from './chart/chart.component';
+import { LoginComponent } from './login/login.component';
+import { RegsiterComponent } from './regsiter/regsiter.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   {
@@ -27,8 +30,11 @@ const routes: Routes = [
         path: 'charts',
         component: ChartsComponent
       }
-    ]
-  }
+    ],
+    canActivate: [AuthService]
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegsiterComponent }
 ];
 
 @NgModule({

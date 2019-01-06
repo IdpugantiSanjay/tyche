@@ -5,7 +5,7 @@ export const environment = {
 export const localhostUrl = `http://localhost:3000/api/`;
 
 export const user = {
-  name: 'sanjay'
+  name: ''
 };
 
 export const baseUrl = `${localhostUrl}${user.name}/`;

@@ -47,6 +47,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { ChartModule, UIChart } from 'primeng/chart';
 import { ChartsComponent } from './chart/chart.component';
+import { LoginComponent } from './login/login.component';
+import { RegsiterComponent } from './regsiter/regsiter.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { ChartsComponent } from './chart/chart.component';
     StatisticsComponent,
     SettingsComponent,
     DateDirective,
-    ChartsComponent
+    ChartsComponent,
+    LoginComponent,
+    RegsiterComponent
   ],
   imports: [
     BrowserModule,
