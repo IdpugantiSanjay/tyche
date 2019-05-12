@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RecordsService } from '../services/records.service';
 import { IRecord, Records } from '../models/record';
 import { Observable } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-record-list',
@@ -36,5 +36,9 @@ export class RecordListComponent implements OnInit {
         tap(() => this.recordsService.recordsModified(true)) // send signal that records are modified to other subscribed observers
       )
       .subscribe();
+  }
+
+  public onFilterChange(filter: { startDate: Date; endDate: Date }) {
+    this.records$ = this.recordsService.searchRecords(filter);
   }
 }

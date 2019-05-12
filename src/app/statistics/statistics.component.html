@@ -10,7 +10,7 @@
       </div>
     </div> -->
 
-    <statistic [stat]="stat"></statistic>
+    <statistic [stat]="stat" (click)="onStatClick(stat.label)"></statistic>
   </ng-container>
 
   <!-- <div class="ui statistic today">

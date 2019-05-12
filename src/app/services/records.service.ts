@@ -14,13 +14,13 @@ export class RecordsService {
     return `${localhostUrl}${user.name}/records`;
   }
 
-  private recordsChanged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  recordsChanged: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   changed$ = this.recordsChanged.asObservable();
 
   constructor(private httpService: HttpService) {}
 
-  recordsModified(changed: boolean) {
+  recordsModified(changed: any) {
     this.recordsChanged.next(changed);
   }
 
@@ -30,12 +30,17 @@ export class RecordsService {
       .pipe(tap(() => this.recordsModified(true)));
   }
 
-  public searchRecords() {
-    return this.httpService.getRequest<Records>(this.endpoint);
+  public searchRecords(searchParams?) {
+    return this.httpService.getRequest<Records>(
+      this.endpoint,
+      new HttpParams({ fromObject: searchParams })
+    );
   }
 
   public deleteRecord(record: IRecord) {
-    return this.httpService.deleteRequest(`${this.endpoint}/${record._id}`).pipe(tap(() => this.recordsModified(true)));
+    return this.httpService
+      .deleteRequest(`${this.endpoint}/${record._id}`)
+      .pipe(tap(() => this.recordsModified(true)));
   }
 
   public getTotalAmount(startTime: Date, endTime: Date) {
