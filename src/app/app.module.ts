@@ -49,6 +49,7 @@ import { ChartModule, UIChart } from 'primeng/chart';
 import { ChartsComponent } from './chart/chart.component';
 import { LoginComponent } from './login/login.component';
 import { RegsiterComponent } from './regsiter/regsiter.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { RegsiterComponent } from './regsiter/regsiter.component';
     DateDirective,
     ChartsComponent,
     LoginComponent,
-    RegsiterComponent
+    RegsiterComponent,
+    StatisticComponent
   ],
   imports: [
     BrowserModule,

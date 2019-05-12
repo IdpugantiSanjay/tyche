@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RecordsService } from '../services/records.service';
 import { Observable } from 'rxjs';
 
+import { BudgetConsumption } from '../types/BudgetConsumption.type';
+
 @Component({
   selector: 'statistics',
   templateUrl: './statistics.component.html',
@@ -21,8 +23,6 @@ export class StatisticsComponent implements OnInit {
     this.stats$ = this.recordsService.statistics() as Observable<Array<BudgetConsumption>>;
   }
 }
-
-type BudgetConsumption = { name: string; percentageConsumed: number; consumed: number; label: string };
 
 export enum BudgetName {
   DAILY = 'dailyBudget',

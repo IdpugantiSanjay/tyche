@@ -34,7 +34,8 @@ const routes: Routes = [
     canActivate: [AuthService]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegsiterComponent }
+  { path: 'register', component: RegsiterComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

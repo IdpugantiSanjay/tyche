@@ -1,0 +1,11 @@
+<ng-container>
+  <div class="ui statistic">
+    <div class="value" [ngStyle]="{ color: stat.consumed < 0 ? 'red' : 'black' }">
+      {{ stat.consumed }}&#8377;
+    </div>
+    <div class="label">{{ stat.label }}</div>
+    <div style="max-width: 100px; padding-left: 30%">
+      <mat-progress-bar mode="determinate" [value]="stat.percentageConsumed"></mat-progress-bar>
+    </div>
+  </div>
+</ng-container>

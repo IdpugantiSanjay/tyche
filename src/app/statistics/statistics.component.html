@@ -1,17 +1,16 @@
 <header class="statistics">
-  <ng-container *ngFor="let stat of (stats$ | async)">
-    <div class="ui statistic">
+  <ng-container *ngFor="let stat of stats$ | async">
+    <!-- <div class="ui statistic">
       <div class="value" [ngStyle]="{ color: stat.consumed < 0 ? 'red' : 'black' }">
         {{ stat.consumed }}&#8377;
       </div>
       <div class="label">{{ stat.label }}</div>
       <div style="max-width: 100px; padding-left: 30%">
-        <mat-progress-bar
-          mode="determinate"
-          [value]="stat.percentageConsumed"
-        ></mat-progress-bar>
+        <mat-progress-bar mode="determinate" [value]="stat.percentageConsumed"></mat-progress-bar>
       </div>
-    </div>
+    </div> -->
+
+    <statistic [stat]="stat"></statistic>
   </ng-container>
 
   <!-- <div class="ui statistic today">
