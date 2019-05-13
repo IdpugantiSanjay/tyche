@@ -23,6 +23,14 @@ export class FormGroupHelper {
     return this.formGroup.controls[propertyName].value;
   }
 
+  setValue(propertyName: string, value: any) {
+    if (!this.formGroup.contains(propertyName)) {
+      throw new Error('No form control with name ' + propertyName);
+    }
+
+    this.formGroup.controls[propertyName].setValue(value);
+  }
+
   /**
    * Clear all the control of the form
    */
