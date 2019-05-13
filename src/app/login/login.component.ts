@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder;
     this.formGroupHelper = new FormGroupHelper(this.form);
+
+    this.setCachedLoginCredentials();
   }
 
   onLoginButtonClick() {
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
       .pipe(
         filter((response: User) => !!response.email),
         tap((response: User) => (user.name = response.username)),
+        tap((response: User) => this.cacheLoginCredentials(this.user)),
         tap(() => this.router.navigateByUrl('home/list'))
       )
       .subscribe();
@@ -46,5 +49,26 @@ export class LoginComponent implements OnInit {
       username: this.formGroupHelper.getValue('username'),
       password: this.formGroupHelper.getValue('password')
     };
+  }
+
+  private getCachedLoginCredentials(): Partial<User> {
+    var credentials = localStorage.getItem('login-credentials');
+    if (credentials) {
+      return JSON.parse(credentials) as Partial<User>;
+    }
+    return undefined;
+  }
+
+  private setCachedLoginCredentials() {
+    var userCredentials = this.getCachedLoginCredentials();
+
+    if (userCredentials) {
+      this.formGroupHelper.setValue('username', userCredentials.username);
+      this.formGroupHelper.setValue('password', userCredentials.password);
+    }
+  }
+
+  private cacheLoginCredentials(user: Partial<User>) {
+    localStorage.setItem('login-credentials', JSON.stringify(user));
   }
 }
