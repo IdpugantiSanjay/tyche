@@ -9,7 +9,8 @@ import { IRecord } from '../models/record';
 export class RecordComponent implements OnInit {
   @Input('data') record: IRecord;
   @Input('color') color: string;
-  @Output('delete') eventEmitter = new EventEmitter<IRecord>();
+  @Output('delete') deleteEventEmitter = new EventEmitter<IRecord>();
+  @Output('addSimilar') addSimilarEventEmitter = new EventEmitter<IRecord>();
 
   isFocused = false;
 
@@ -18,6 +19,10 @@ export class RecordComponent implements OnInit {
   ngOnInit() {}
 
   public onDeleteButtonClick() {
-    this.eventEmitter.emit(this.record);
+    this.deleteEventEmitter.emit(this.record);
+  }
+
+  public onAddSimilarRecordButtonClick() {
+    this.addSimilarEventEmitter.emit(this.record);
   }
 }

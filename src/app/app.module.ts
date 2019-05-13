@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { MatDividerModule } from '@angular/material/divider';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -50,6 +52,7 @@ import { ChartsComponent } from './chart/chart.component';
 import { LoginComponent } from './login/login.component';
 import { RegsiterComponent } from './regsiter/regsiter.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import { TransactionTimelineComponent } from './transaction-timeline/transaction-timeline.component';
 
 @NgModule({
   declarations: [
@@ -66,12 +69,14 @@ import { StatisticComponent } from './statistic/statistic.component';
     ChartsComponent,
     LoginComponent,
     RegsiterComponent,
-    StatisticComponent
+    StatisticComponent,
+    TransactionTimelineComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDividerModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -120,7 +125,9 @@ export class AppModule {
       });
     });
 
-    push.requestSubscription({ serverPublicKey: publicKey }).then(pushSubscription => send(pushSubscription));
+    push
+      .requestSubscription({ serverPublicKey: publicKey })
+      .then(pushSubscription => send(pushSubscription));
   }
 }
 

@@ -3,6 +3,7 @@ import { RecordsService } from '../services/records.service';
 import { IRecord, Records } from '../models/record';
 import { Observable } from 'rxjs';
 import { switchMap, tap, debounceTime, filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-record-list',
@@ -12,7 +13,7 @@ import { switchMap, tap, debounceTime, filter } from 'rxjs/operators';
 export class RecordListComponent implements OnInit {
   records$: Observable<Records>;
 
-  constructor(private recordsService: RecordsService) {}
+  constructor(private recordsService: RecordsService, private router: Router) {}
 
   ngOnInit() {
     this.initializeRecords();
@@ -40,5 +41,11 @@ export class RecordListComponent implements OnInit {
 
   public onFilterChange(filter: { startDate: Date; endDate: Date }) {
     this.records$ = this.recordsService.searchRecords(filter);
+  }
+
+  public onAddSimilarRecordEvent(record: IRecord) {
+    if (!record) return;
+
+    this.router.navigate(['/transaction-timeline', record]);
   }
 }

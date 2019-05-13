@@ -8,6 +8,7 @@ import { ChartsComponent } from './chart/chart.component';
 import { LoginComponent } from './login/login.component';
 import { RegsiterComponent } from './regsiter/regsiter.component';
 import { AuthService } from './services/auth.service';
+import { TransactionTimelineComponent } from './transaction-timeline/transaction-timeline.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegsiterComponent },
+  {
+    path: 'transaction-timeline',
+    component: TransactionTimelineComponent
+    // canActivate: [AuthService]
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
