@@ -13,18 +13,25 @@
       {{ record.description }}
     </div>
   </mat-card-content>
-  <mat-card-actions align="end" [ngClass]="isFocused ? 'show' : 'hide'">
-    <div style="margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0">
+  <mat-card-actions [ngClass]="isFocused ? 'show' : 'hide'">
+    <div>
+      
+
+      <button mat-button>
+        <i class="material-icons">
+          call_split
+          </i>
+      </button>
+
+      <button mat-button>
+        <i class="material-icons">
+          edit
+          </i>
+      </button>
+
       <button mat-button (click)="onDeleteButtonClick()">
         <i class="material-icons"> delete </i>
       </button>
-      <button mat-button (click)="onAddSimilarRecordButtonClick()">
-        <i class="material-icons">
-          add_box
-        </i>
-      </button>
     </div>
-
-    <!-- <button mat-button><i class="material-icons"> edit </i></button> -->
   </mat-card-actions>
 </mat-card>

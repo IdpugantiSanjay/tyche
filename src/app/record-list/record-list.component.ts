@@ -42,10 +42,5 @@ export class RecordListComponent implements OnInit {
   public onFilterChange(filter: { startDate: Date; endDate: Date }) {
     this.records$ = this.recordsService.searchRecords(filter);
   }
-
-  public onAddSimilarRecordEvent(record: IRecord) {
-    if (!record) return;
-
-    this.router.navigate(['/transaction-timeline', record]);
-  }
+  
 }

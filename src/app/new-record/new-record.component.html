@@ -71,12 +71,7 @@
         </p>
 
         <div style="padding: 0.5%">
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="onSubmitButtonClick()"
-            [disabled]="!form.valid"
-          >
+          <button mat-raised-button color="primary" (click)="onSubmitButtonClick()" [disabled]="!form.valid">
             Submit
           </button>
           &nbsp;
@@ -108,19 +103,19 @@
       </mat-select>
     </mat-form-field> -->
 
-  <div class="card" style="margin-top: 5%;">
+  <!-- <div class="card" style="margin-top: 5%;">
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> Set Remainder Settings </mat-panel-title>
-          <!-- <mat-panel-description>
+          <mat-panel-title> Set Remainder Settings </mat-panel-title> -->
+  <!-- <mat-panel-description>
           
         </mat-panel-description> -->
-        </mat-expansion-panel-header>
+  <!-- </mat-expansion-panel-header>
 
-        <mat-checkbox color="primary"> Remind Me Every </mat-checkbox> &nbsp; &nbsp;
+        <mat-checkbox color="primary"> Remind Me Every </mat-checkbox> &nbsp; &nbsp; -->
 
-        <mat-form-field style="width: 120px">
+  <!-- <mat-form-field style="width: 120px">
           <mat-select>
             <mat-option *ngFor="let option of spanOptions" [value]="option">
               {{ option }}
@@ -137,7 +132,7 @@
         </mat-form-field>
       </mat-expansion-panel>
     </mat-accordion>
-  </div>
+  </div> -->
 
   <!-- </mat-card> -->
 </div>
