@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { MatDividerModule } from '@angular/material/divider';
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,8 +55,10 @@ import { LoginComponent } from './login/login.component';
 import { RegsiterComponent } from './regsiter/regsiter.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { TransactionTimelineComponent } from './transaction-timeline/transaction-timeline.component';
+import { RecordDeleteConfirmationComponent } from './record-delete-confirmation/record-delete-confirmation.component';
 
 @NgModule({
+  entryComponents: [RecordDeleteConfirmationComponent],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -70,7 +74,8 @@ import { TransactionTimelineComponent } from './transaction-timeline/transaction
     LoginComponent,
     RegsiterComponent,
     StatisticComponent,
-    TransactionTimelineComponent
+    TransactionTimelineComponent,
+    RecordDeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +105,8 @@ import { TransactionTimelineComponent } from './transaction-timeline/transaction
     MatProgressBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     NgxMaterialTimepickerModule.forRoot(),
-    ChartModule
+    ChartModule,
+    MatDialogModule
   ],
   providers: [
     ErrorHandlerService,
@@ -125,9 +131,7 @@ export class AppModule {
       });
     });
 
-    push
-      .requestSubscription({ serverPublicKey: publicKey })
-      .then(pushSubscription => send(pushSubscription));
+    push.requestSubscription({ serverPublicKey: publicKey }).then(pushSubscription => send(pushSubscription));
   }
 }
 

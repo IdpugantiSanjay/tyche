@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Hi {{ username }}</h1>
+<div mat-dialog-content>
+  <p>Do you want to delete the transaction?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
+  <button mat-button style="color: red" (click)="onConfirmClick()">Confirm</button>
+</div>
