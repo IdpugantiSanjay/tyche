@@ -1,32 +1,40 @@
 <mat-card class="card" (mouseover)="this.isFocused = true" (mouseleave)="this.isFocused = false">
   <mat-card-header>
-    <mat-card-title>
+    <mat-card-title style="width: 250px">
       {{ record.value }}&#8377;
       <span class="dot" [ngStyle]="{ 'background-color': color }"> </span>
+      <img style="float: right" src="https://img.icons8.com/ios/20/000000/museum-filled.png" />
+      <!-- <img src="https://img.icons8.com/material/20/000000/bank-card-back-side.png" /> -->
     </mat-card-title>
     <mat-card-subtitle>
       {{ record.category }} &nbsp; {{ record.createdDate | date: 'short' }}
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <div style="max-height: 30px; overflow: hidden; min-height: 10px">
+    <div style="max-height: 30px; overflow: hidden; min-height: 10px; margin-bottom: 10px">
       {{ record.description }}
     </div>
+    <!-- <div class="tags">
+      <span>
+        #sanjay
+      </span>
+      <span>
+        #summer
+      </span>
+    </div> -->
   </mat-card-content>
-  <mat-card-actions [ngClass]="isFocused ? 'show' : 'hide'">
+  <mat-card-actions [ngClass]="isFocused ? 'show' : 'hide'" style="z-index: 1">
     <div>
-      
-
       <button mat-button>
         <i class="material-icons">
           call_split
-          </i>
+        </i>
       </button>
 
       <button mat-button>
         <i class="material-icons">
           edit
-          </i>
+        </i>
       </button>
 
       <button mat-button (click)="onDeleteButtonClick()">

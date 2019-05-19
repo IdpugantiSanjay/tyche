@@ -14,6 +14,8 @@ export class RecordComponent implements OnInit {
 
   isFocused = false;
 
+  showTags = true;
+
   constructor() {}
 
   ngOnInit() {}
@@ -24,5 +26,13 @@ export class RecordComponent implements OnInit {
 
   public onAddSimilarRecordButtonClick() {
     this.addSimilarEventEmitter.emit(this.record);
+  }
+
+  public hideCardTags() {
+    this.showTags = false;
+  }
+
+  public showCardTags() {
+    this.showTags = true;
   }
 }

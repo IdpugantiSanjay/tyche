@@ -5,7 +5,7 @@ import { IRecord } from '../models/record';
 import { Router } from '@angular/router';
 import { FormGroupHelper } from '../helpers/form-group-helper';
 import { ErrorHandlerService } from '../services/error-handler.service';
-import { tap } from 'rxjs/operators';
+import { tap, distinctUntilChanged } from 'rxjs/operators';
 import { CategoryService } from '../services/category.service';
 
 @Component({
@@ -19,9 +19,20 @@ export class NewRecordComponent implements OnInit {
   form: FormGroup;
   formGroupHelper: FormGroupHelper;
 
+  tagFormControl: FormControl = new FormControl();
+
+  accountControl: FormControl = new FormControl();
+
   expenseCategories = [];
   incomeCategories = [];
   categories = [];
+
+  accounts = [{ name: 'HDFC Bank Account' }, { name: 'HDFC Credit Card' }];
+
+  fieldsConfiguaration = {
+    isAccountEnabled: false,
+    isTagsEnabled: true
+  };
 
   constructor(
     private categoryService: CategoryService,
@@ -44,6 +55,26 @@ export class NewRecordComponent implements OnInit {
       .pipe(tap((categories: any[]) => (this.expenseCategories = categories)))
       .pipe(tap((categories: any[]) => (this.categories = categories)))
       .subscribe();
+
+    this.tagFormControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value: string) => {
+      // replace any double spaces with single space
+      this.tagFormControl.setValue(value.replace(/\s\s+/g, ' '));
+
+      // the value should only start with '#'
+      if (!value.startsWith('#')) {
+        this.tagFormControl.setValue('');
+      }
+
+      if (value.includes(' ')) {
+        const hasthags = value.split(' ');
+
+        if (hasthags.every(hastag => !!hastag)) {
+          this.tagFormControl.setValue(
+            hasthags.filter((hasthag: string) => hasthag.startsWith('#')).join(' ')
+          );
+        }
+      }
+    });
   }
 
   onSubmitButtonClick() {
@@ -87,7 +118,7 @@ export class NewRecordComponent implements OnInit {
   }
 
   get formGroup() {
-    return new FormGroup({
+    const form = new FormGroup({
       type: new FormControl(2, Validators.compose([Validators.required])),
       category: new FormControl('Food and Drinks', Validators.compose([Validators.required])),
       amount: new FormControl('', Validators.compose([Validators.required])),
@@ -95,6 +126,16 @@ export class NewRecordComponent implements OnInit {
       date: new FormControl(new Date(), Validators.required),
       time: new FormControl(new Date().toTimeString())
     });
+
+    if (this.fieldsConfiguaration.isTagsEnabled) {
+      form.addControl('tags', this.tagFormControl);
+    }
+
+    if (this.fieldsConfiguaration.isAccountEnabled) {
+      form.addControl('account', this.accountControl);
+    }
+
+    return form;
   }
 
   validateDate(dateString: string) {

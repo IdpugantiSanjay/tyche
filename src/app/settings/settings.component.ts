@@ -7,6 +7,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { FormGroupHelper } from '../helpers/form-group-helper';
 import { BudgetService } from '../services/budget.service';
 import { Budget } from '../models/budget';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -15,19 +16,31 @@ import { Budget } from '../models/budget';
 })
 export class SettingsComponent implements OnInit {
   form: FormGroup;
-  formHelper: FormGroupHelper;
+  featuresForm: FormGroup;
 
-  constructor(private recordsService: RecordsService, private budgetsService: BudgetService) {}
+  formHelper: FormGroupHelper;
+  featuresFormHelper: FormGroupHelper;
+
+  constructor(
+    private recordsService: RecordsService,
+    private budgetsService: BudgetService,
+    private settingsService: SettingsService
+  ) {}
 
   ngOnInit() {
     this.form = this.formGroup;
+    this.featuresForm = this.featuresFromGroup;
+
     this.formHelper = new FormGroupHelper(this.form);
+    this.featuresFormHelper = new FormGroupHelper(this.featuresForm);
 
     this.budgetsService.budgets().subscribe((budgets: Budget[]) => {
       for (const budget of budgets) {
         this.form.controls[budget.name].setValue(budget.value);
       }
     });
+
+    this.settingsService.userSettings().subscribe(console.log);
   }
 
   onExportButtonClick() {
@@ -45,12 +58,25 @@ export class SettingsComponent implements OnInit {
     this.budgetsService.saveBudgets(enteredBudgets).subscribe();
   }
 
+  onFeatureSaveButtonClick() {
+    var keyValuePair = this.featuresFormHelper.keyValuePairs();
+
+    this.settingsService.saveSettings(keyValuePair).subscribe(response => console.log(response));
+  }
+
   get formGroup() {
     return new FormGroup({
       dailyBudget: new FormControl(0),
       weeklyBudget: new FormControl(0),
       monthlyBudget: new FormControl(0),
       yearlyBudget: new FormControl(0)
+    });
+  }
+
+  get featuresFromGroup() {
+    return new FormGroup({
+      isAccountEnabled: new FormControl(false),
+      isTagsEnabled: new FormControl(false)
     });
   }
 }

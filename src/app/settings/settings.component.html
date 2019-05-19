@@ -12,13 +12,7 @@
           &nbsp; &nbsp;
           <mat-form-field appearance="outline">
             <mat-label>Daily Budget</mat-label>
-            <input
-              matInput
-              placeholder="Daily Budget"
-              numeric
-              maxlength="5"
-              formControlName="dailyBudget"
-            />
+            <input matInput placeholder="Daily Budget" numeric maxlength="5" formControlName="dailyBudget" />
           </mat-form-field>
 
           &nbsp; &nbsp;
@@ -63,6 +57,37 @@
       </button>
     </mat-expansion-panel>
   </mat-accordion>
+
+  <br />
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Enable / Disable Features </mat-panel-title>
+        <mat-panel-description>
+          <!-- Enable / Disable Features -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <form [formGroup]="featuresForm">
+        &nbsp; &nbsp;
+        <mat-checkbox color="primary" style="margin-right: 25px" formControlName="isTagsEnabled"
+          >Enable Tags Feature</mat-checkbox
+        >
+
+        <mat-checkbox color="primary" formControlName="isAccountEnabled"
+          >Enable Accounts Feature</mat-checkbox
+        >
+      </form>
+
+      <br />
+      <br />
+      <button mat-raised-button color="primary" (click)="onFeatureSaveButtonClick()">
+        Save
+      </button>
+    </mat-expansion-panel>
+  </mat-accordion>
+
   <p>
     <button mat-raised-button color="primary" (click)="onExportButtonClick()">
       Export

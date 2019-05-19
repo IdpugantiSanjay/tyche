@@ -15,6 +15,7 @@
       <a mat-list-item routerLink="/home/charts"><i class="material-icons"> show_chart </i></a>
       <a mat-list-item routerLink="/home/group"><i class="material-icons"> group </i></a>
       <a mat-list-item routerLink="/home/settings"><i class="material-icons"> settings </i></a>
+      <a mat-list-item routerLink="/home/accounts"><i class="material-icons"> account_balance </i></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,7 +25,7 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="(isHandset$ | async)"
+        *ngIf="isHandset$ | async"
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>

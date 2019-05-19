@@ -4,6 +4,7 @@ import { User } from '../models/user.model';
 import { authUrl } from 'src/environments/environment';
 import { user } from 'src/environments/environment.prod';
 import { Router, CanActivate } from '@angular/router';
+import { tap, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class AuthService implements CanActivate {
   }
 
   public loginUser(user: Partial<User>) {
-    return this.httpService.postRequest(`${authUrl()}/search`, user);
+    return this.httpService.postRequest(`${authUrl()}/search`, user).pipe(
+      filter<Partial<User>>(response => !!response),
+      tap(response => (user.settings = response.settings)),
+      tap(() => console.log(user.settings))
+    );
   }
 }

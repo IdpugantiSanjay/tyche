@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user } from 'src/environments/environment';
+import { user } from 'src/environments/environment.prod';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
@@ -13,6 +13,7 @@ export class RecordDeleteConfirmationComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<RecordDeleteConfirmationComponent>) {}
 
   ngOnInit() {
+    debugger;
     this.username = user.name;
   }
 

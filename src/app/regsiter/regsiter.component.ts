@@ -52,7 +52,8 @@ export class RegsiterComponent implements OnInit {
     return {
       username: this.formHelper.getValue('username'),
       password: this.formHelper.getValue('password'),
-      email: this.formHelper.getValue('email')
+      email: this.formHelper.getValue('email'),
+      settings: new Map()
     };
   }
 }

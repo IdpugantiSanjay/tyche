@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegsiterComponent } from './regsiter/regsiter.component';
 import { AuthService } from './services/auth.service';
 import { TransactionTimelineComponent } from './transaction-timeline/transaction-timeline.component';
+import { AccountsComponent } from './accounts/accounts.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'charts',
         component: ChartsComponent
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent
       }
     ],
     canActivate: [AuthService]

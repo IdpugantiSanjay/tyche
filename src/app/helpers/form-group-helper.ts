@@ -2,6 +2,10 @@ import { FormGroup } from '@angular/forms';
 
 import * as _ from 'lodash';
 
+import * as R from 'ramda';
+
+const { map, pipe, fromPairs } = R;
+
 export class FormGroupHelper {
   private formGroup: FormGroup;
 
@@ -29,6 +33,25 @@ export class FormGroupHelper {
     }
 
     this.formGroup.controls[propertyName].setValue(value);
+  }
+
+  entries(): Array<{}> {
+    return map((formControlName: string) => [
+      formControlName,
+      this.formGroup.controls[formControlName].value
+    ])(this.formGroup.value);
+  }
+
+  keyValuePairs() {
+    const controlEntries = map((controlName: string) => [
+      controlName,
+      this.formGroup.controls[controlName].value
+    ]);
+
+    return pipe(
+      controlEntries,
+      fromPairs
+    )(Object.keys(this.formGroup.value));
   }
 
   /**

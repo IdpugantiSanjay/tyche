@@ -56,6 +56,7 @@ import { RegsiterComponent } from './regsiter/regsiter.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { TransactionTimelineComponent } from './transaction-timeline/transaction-timeline.component';
 import { RecordDeleteConfirmationComponent } from './record-delete-confirmation/record-delete-confirmation.component';
+import { AccountsComponent } from './accounts/accounts.component';
 
 @NgModule({
   entryComponents: [RecordDeleteConfirmationComponent],
@@ -75,7 +76,8 @@ import { RecordDeleteConfirmationComponent } from './record-delete-confirmation/
     RegsiterComponent,
     StatisticComponent,
     TransactionTimelineComponent,
-    RecordDeleteConfirmationComponent
+    RecordDeleteConfirmationComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,

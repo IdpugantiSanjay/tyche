@@ -1,4 +1,5 @@
 .container {
+  margin-top: 5%;
 }
 
 mat-card {
@@ -14,4 +15,17 @@ mat-card {
 
 .form-width {
   width: 30%;
+}
+
+.full-row {
+  width: 395px;
+}
+
+.account {
+  width: 200px;
+  margin-right: 25px;
+}
+
+.tags {
+  width: 170px;
 }
