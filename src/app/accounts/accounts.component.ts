@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { NewAccountComponent } from '../new-account/new-account.component';
 
 @Component({
   selector: 'app-accounts',
@@ -8,11 +10,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class AccountsComponent implements OnInit {
   showTransactions: boolean = false;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
 
   onViewTransactionsClick() {
     this.showTransactions = !this.showTransactions;
+  }
+
+  onAddAccountClickEvent() {
+    this.dialog.open(NewAccountComponent);
   }
 }

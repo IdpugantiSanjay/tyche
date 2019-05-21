@@ -57,9 +57,10 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { TransactionTimelineComponent } from './transaction-timeline/transaction-timeline.component';
 import { RecordDeleteConfirmationComponent } from './record-delete-confirmation/record-delete-confirmation.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { NewAccountComponent } from './new-account/new-account.component';
 
 @NgModule({
-  entryComponents: [RecordDeleteConfirmationComponent],
+  entryComponents: [RecordDeleteConfirmationComponent, NewAccountComponent],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -77,7 +78,8 @@ import { AccountsComponent } from './accounts/accounts.component';
     StatisticComponent,
     TransactionTimelineComponent,
     RecordDeleteConfirmationComponent,
-    AccountsComponent
+    AccountsComponent,
+    NewAccountComponent
   ],
   imports: [
     BrowserModule,

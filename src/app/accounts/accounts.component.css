@@ -56,3 +56,37 @@
 .cost {
   width: 75px;
 }
+
+
+.add-account button {
+  position: absolute;
+  right: 100px;
+}
+
+.add-account {
+  position: relative;
+  cursor: pointer;
+  transition: all 2s;
+  /* animation: moveUp */
+}
+
+.add-account:hover {
+  transform: translateY(-3px);
+}
+
+.add-account:active {
+  transform: translateY(-1px);
+}
+
+@keyframes moveUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px)
+  }
+
+
+  100% {
+    opacity: 1;
+    transform: translate(0)
+  }
+}

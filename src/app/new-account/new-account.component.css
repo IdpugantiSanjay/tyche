@@ -1,0 +1,32 @@
+.container {
+    margin-top: 5%;
+  }
+  
+  mat-card {
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    /* padding: 10%; */
+  }
+  
+  .card {
+    max-width: 500px;
+    min-width: 270px;
+  }
+  
+  .form-width {
+    width: 30%;
+  }
+  
+  .full-row {
+    width: 395px;
+  }
+  
+  .account {
+    width: 200px;
+    margin-right: 25px;
+  }
+  
+  .tags {
+    width: 170px;
+  }
+  
