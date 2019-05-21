@@ -15,7 +15,9 @@
       <a mat-list-item routerLink="/home/charts"><i class="material-icons"> show_chart </i></a>
       <a mat-list-item routerLink="/home/group"><i class="material-icons"> group </i></a>
       <a mat-list-item routerLink="/home/settings"><i class="material-icons"> settings </i></a>
-      <a mat-list-item routerLink="/home/accounts"><i class="material-icons"> account_balance </i></a>
+      <div *ngIf="enableAccount">
+        <a mat-list-item routerLink="/home/accounts"><i class="material-icons" > account_balance </i></a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

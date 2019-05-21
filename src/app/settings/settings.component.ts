@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RecordsService } from '../services/records.service';
 
 import * as _ from 'lodash';
-import { pluck, flatMap } from 'rxjs/operators';
+import { pluck, flatMap, tap, filter, map } from 'rxjs/operators';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormGroupHelper } from '../helpers/form-group-helper';
 import { BudgetService } from '../services/budget.service';
 import { Budget } from '../models/budget';
 import { SettingsService } from '../services/settings.service';
+import { user } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-settings',
@@ -40,7 +41,15 @@ export class SettingsComponent implements OnInit {
       }
     });
 
-    this.settingsService.userSettings().subscribe(console.log);
+    this.settingsService.userSettings().pipe(
+      filter((response: any) => response && response.settings), 
+      map(response => response.settings),
+      tap(settings => user.settings = settings))
+      .subscribe((settings: any) => {
+        this.settingsService.emitAccountSettingChangedEvent(settings.isAccountEnabled);
+        this.featuresFormHelper.setValue('isTagsEnabled', settings.isTagsEnabled);
+        this.featuresFormHelper.setValue('isAccountEnabled', settings.isAccountEnabled);
+    });
   }
 
   onExportButtonClick() {
@@ -61,7 +70,21 @@ export class SettingsComponent implements OnInit {
   onFeatureSaveButtonClick() {
     var keyValuePair = this.featuresFormHelper.keyValuePairs();
 
-    this.settingsService.saveSettings(keyValuePair).subscribe(response => console.log(response));
+    this.saveUserSettings(keyValuePair);
+  }
+
+
+  private saveUserSettings(keyValuePair) {
+    this.settingsService.saveSettings(keyValuePair)
+      .pipe(
+        filter((response: any) => response && response.settings), 
+        map(response => response.settings),
+        tap(settings => user.settings = settings))
+        .subscribe((settings: any) => {
+        if (settings) {
+          this.settingsService.emitAccountSettingChangedEvent(settings.isAccountEnabled);
+        }
+      });
   }
 
   get formGroup() {
