@@ -41,15 +41,17 @@ export class SettingsComponent implements OnInit {
       }
     });
 
-    this.settingsService.userSettings().pipe(
-      filter((response: any) => response && response.settings), 
-      map(response => response.settings),
-      tap(settings => user.settings = settings))
+    this.settingsService
+      .userSettings()
+      .pipe(
+        filter((settings: any) => !!settings),
+        tap(settings => (settings = settings))
+      )
       .subscribe((settings: any) => {
         this.settingsService.emitAccountSettingChangedEvent(settings.isAccountEnabled);
         this.featuresFormHelper.setValue('isTagsEnabled', settings.isTagsEnabled);
         this.featuresFormHelper.setValue('isAccountEnabled', settings.isAccountEnabled);
-    });
+      });
   }
 
   onExportButtonClick() {
@@ -73,14 +75,14 @@ export class SettingsComponent implements OnInit {
     this.saveUserSettings(keyValuePair);
   }
 
-
   private saveUserSettings(keyValuePair) {
-    this.settingsService.saveSettings(keyValuePair)
+    this.settingsService
+      .saveSettings(keyValuePair)
       .pipe(
-        filter((response: any) => response && response.settings), 
-        map(response => response.settings),
-        tap(settings => user.settings = settings))
-        .subscribe((settings: any) => {
+        filter((settings: any) => !!settings),
+        tap(settings => (settings = settings))
+      )
+      .subscribe((settings: any) => {
         if (settings) {
           this.settingsService.emitAccountSettingChangedEvent(settings.isAccountEnabled);
         }
