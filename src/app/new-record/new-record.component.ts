@@ -7,6 +7,8 @@ import { FormGroupHelper } from '../helpers/form-group-helper';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { tap, distinctUntilChanged } from 'rxjs/operators';
 import { CategoryService } from '../services/category.service';
+import { Observable } from 'rxjs';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-new-record',
@@ -21,24 +23,25 @@ export class NewRecordComponent implements OnInit {
 
   tagFormControl: FormControl = new FormControl();
 
-  accountControl: FormControl = new FormControl();
+  accountControl: FormControl = new FormControl('0');
 
   expenseCategories = [];
   incomeCategories = [];
   categories = [];
 
-  accounts = [{ name: 'HDFC Bank Account' }, { name: 'HDFC Credit Card' }];
+  accounts$: Observable<Array<IAccount>>;
 
   fieldsConfiguaration = {
-    isAccountEnabled: false,
-    isTagsEnabled: true
+    isAccountEnabled: true,
+    isTagsEnabled: false
   };
 
   constructor(
     private categoryService: CategoryService,
     private recordsService: RecordsService,
     private router: Router,
-    private notificationService: ErrorHandlerService
+    private notificationService: ErrorHandlerService,
+    private accountService: AccountService
   ) {}
 
   ngOnInit() {
@@ -55,6 +58,10 @@ export class NewRecordComponent implements OnInit {
       .pipe(tap((categories: any[]) => (this.expenseCategories = categories)))
       .pipe(tap((categories: any[]) => (this.categories = categories)))
       .subscribe();
+
+    this.accounts$ = this.accountService
+      .getUserAccounts()
+      .pipe(tap(accounts => accounts.unshift({ _id: '0', accountName: 'Cash', balance: 0 })));
 
     this.tagFormControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value: string) => {
       // replace any double spaces with single space
@@ -107,6 +114,7 @@ export class NewRecordComponent implements OnInit {
     record.description = this.formGroupHelper.getValue('reason');
     record.category = this.formGroupHelper.getValue('category');
     record.createdDate = this.time;
+    record.accountId = this.formGroupHelper.getValue('accountId');
     return record;
   }
 
@@ -132,7 +140,7 @@ export class NewRecordComponent implements OnInit {
     }
 
     if (this.fieldsConfiguaration.isAccountEnabled) {
-      form.addControl('account', this.accountControl);
+      form.addControl('accountId', this.accountControl);
     }
 
     return form;

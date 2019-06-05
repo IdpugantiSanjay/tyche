@@ -88,6 +88,33 @@
     </mat-expansion-panel>
   </mat-accordion>
 
+  <br />
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> User Accounts </mat-panel-title>
+        <mat-panel-description>
+          <!-- Enable / Disable Features -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container *ngFor="let account of accounts | async">
+        <div class="account-list-container">
+          <i class="material-icons" id="account-icon">
+            account_balance
+          </i>
+          <span class="account-name aligned-with-icon">
+            {{ account.accountName }}
+          </span>
+          <i class="material-icons account-delete-icon" (click)="onAccountDeleteClick(account)">
+            delete
+          </i>
+        </div>
+      </ng-container>
+      <br />
+      <br />
+    </mat-expansion-panel>
+  </mat-accordion>
   <p>
     <button mat-raised-button color="primary" (click)="onExportButtonClick()">
       Export

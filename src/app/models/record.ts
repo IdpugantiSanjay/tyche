@@ -6,7 +6,7 @@ export interface IRecord {
   username: string;
   category: string;
   type: 1 | 2;
-
+  accountId: string;
   createdDate: Date;
 }
 

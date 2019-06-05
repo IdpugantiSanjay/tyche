@@ -13,7 +13,6 @@ export class RecordDeleteConfirmationComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<RecordDeleteConfirmationComponent>) {}
 
   ngOnInit() {
-    debugger;
     this.username = user.name;
   }
 

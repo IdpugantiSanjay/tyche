@@ -1,35 +1,32 @@
+<form [formGroup]="form">
+  <p>
+    <mat-form-field style="width: 250px">
+      <mat-label>Account Name</mat-label>
+      <input maxlength="36" matInput formControlName="accountName" />
+    </mat-form-field>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <mat-form-field style="width: 120px">
+      <mat-label>Balance</mat-label>
+      <input
+        matInput
+        numeric
+        maxlength="7"
+        placeholder="120"
+        formControlName="balance"
+        (paste)="onBalancePasteEvent($event)"
+      />
+      <span matPrefix>&#8377;&nbsp;</span> <span matSuffix> .00 </span>
+    </mat-form-field>
+  </p>
 
-      <form [formGroup]="form">
-        <p>
-
-            <mat-form-field style="width: 250px">
-                <mat-label>Account Name</mat-label>
-                <input
-                  maxlength="36"
-                  matInput
-                  formControlName="accountName"
-                />
-              </mat-form-field>
-              &nbsp; &nbsp; &nbsp; &nbsp;
-          <mat-form-field style="width: 120px">
-            <mat-label>Balance</mat-label>
-            <input matInput numeric maxlength="7" placeholder="120" formControlName="accountBalance" />
-            <span matPrefix>&#8377;&nbsp;</span> <span matSuffix> .00 </span>
-          </mat-form-field>
-          
-          
-
-        </p>
-
-        <div style="padding: 0.5%">
-          <button mat-raised-button color="primary" (click)="onAccountSaveClick()" [disabled]="!form.valid">
-            Save
-          </button>
-          &nbsp;
-          <!-- <button mat-raised-button>Submit+</button> &nbsp; -->
-          <button mat-raised-button color="warn" (click)="onCancelClick()">
-            Cancel
-          </button>
-        </div>
-      </form>
-    
+  <div style="padding: 0.5%">
+    <button mat-raised-button color="primary" (click)="onAccountSaveClick()" [disabled]="!form.valid">
+      Save
+    </button>
+    &nbsp;
+    <!-- <button mat-raised-button>Submit+</button> &nbsp; -->
+    <button mat-raised-button color="warn" (click)="onCancelClick()">
+      Cancel
+    </button>
+  </div>
+</form>

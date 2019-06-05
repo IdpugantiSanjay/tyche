@@ -50,9 +50,9 @@
             [ngClass]="fieldsConfiguaration.isTagsEnabled ? 'account' : 'full-row'"
             *ngIf="fieldsConfiguaration.isAccountEnabled"
           >
-            <mat-select placeholder="Account" formControlName="account">
-              <mat-option *ngFor="let account of accounts" [value]="account.name">
-                {{ account.name }}
+            <mat-select placeholder="Source" formControlName="accountId">
+              <mat-option *ngFor="let account of accounts$ | async" [value]="account._id">
+                {{ account.accountName }}
               </mat-option>
             </mat-select>
           </mat-form-field>

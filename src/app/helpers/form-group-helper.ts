@@ -42,6 +42,9 @@ export class FormGroupHelper {
     ])(this.formGroup.value);
   }
 
+  /**
+   * Return all form controls and their respective values as an object
+   */
   keyValuePairs() {
     const controlEntries = map((controlName: string) => [
       controlName,

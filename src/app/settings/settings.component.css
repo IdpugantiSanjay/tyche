@@ -1,0 +1,26 @@
+.account-name {
+  font-weight: 500;
+  text-align: center;
+  /* flex: 0 0 0; */
+}
+
+.aligned-with-icon {
+  position: relative;
+  margin-top: 5px;
+  margin-left: 5px; /* optional */
+}
+
+.account-list-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 10px;
+  /* margin-bottom: 10px; */
+}
+
+.account-delete-icon {
+  /* justify-self: flex-end; */
+  margin-left: auto;
+  cursor: pointer;
+}

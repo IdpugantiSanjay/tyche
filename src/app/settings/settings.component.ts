@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { RecordsService } from '../services/records.service';
 
 import * as _ from 'lodash';
-import { pluck, flatMap, tap, filter, map } from 'rxjs/operators';
+import { pluck, flatMap, tap, filter, map, switchMap } from 'rxjs/operators';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormGroupHelper } from '../helpers/form-group-helper';
 import { BudgetService } from '../services/budget.service';
 import { Budget } from '../models/budget';
 import { SettingsService } from '../services/settings.service';
 import { user } from 'src/environments/environment.prod';
+import { AccountService } from '../services/account.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -22,10 +24,13 @@ export class SettingsComponent implements OnInit {
   formHelper: FormGroupHelper;
   featuresFormHelper: FormGroupHelper;
 
+  accounts: Observable<Array<IAccount>>;
+
   constructor(
     private recordsService: RecordsService,
     private budgetsService: BudgetService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private accountsService: AccountService
   ) {}
 
   ngOnInit() {
@@ -52,6 +57,8 @@ export class SettingsComponent implements OnInit {
         this.featuresFormHelper.setValue('isTagsEnabled', settings.isTagsEnabled);
         this.featuresFormHelper.setValue('isAccountEnabled', settings.isAccountEnabled);
       });
+
+    this.accounts = this.accountsService.getUserAccounts();
   }
 
   onExportButtonClick() {
@@ -103,6 +110,13 @@ export class SettingsComponent implements OnInit {
       isAccountEnabled: new FormControl(false),
       isTagsEnabled: new FormControl(false)
     });
+  }
+
+  public onAccountDeleteClick(account: IAccount) {
+    this.accountsService
+      .deleteUserAccount(account)
+      .pipe(tap(() => (this.accounts = this.accountsService.getUserAccounts())))
+      .subscribe();
   }
 }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormGroupHelper } from '../helpers/form-group-helper';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-new-account',
@@ -8,11 +9,10 @@ import { FormGroupHelper } from '../helpers/form-group-helper';
   styleUrls: ['./new-account.component.css']
 })
 export class NewAccountComponent implements OnInit {
-
   form: FormGroup;
   formGroupHelper: FormGroupHelper;
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<NewAccountComponent>) {}
 
   ngOnInit() {
     this.form = this.formGroup;
@@ -20,14 +20,32 @@ export class NewAccountComponent implements OnInit {
     this.formGroupHelper = new FormGroupHelper(this.form);
   }
 
-
   get formGroup() {
     const form = new FormGroup({
-      accountBalance: new FormControl('', Validators.compose([Validators.required])),
-      accountName: new FormControl('', Validators.maxLength(120)),
+      balance: new FormControl('', Validators.compose([Validators.required])),
+      accountName: new FormControl('', Validators.maxLength(120))
     });
 
     return form;
   }
 
+  onCancelClick() {
+    this.dialogRef.close();
+  }
+
+  onAccountSaveClick(): void {
+    this.dialogRef.close(this.formGroupHelper.keyValuePairs());
+  }
+
+  onBalancePasteEvent(event: ClipboardEvent) {
+    let clipboardData = event.clipboardData || (window as any).clipboardData;
+    let pastedText = clipboardData.getData('text');
+
+    if (!Number(pastedText)) {
+      event.preventDefault();
+      return;
+    }
+
+    this.formGroupHelper.setValue('balance', pastedText);
+  }
 }
