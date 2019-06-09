@@ -23,7 +23,7 @@ export class NewRecordComponent implements OnInit {
 
   tagFormControl: FormControl = new FormControl();
 
-  accountControl: FormControl = new FormControl('0');
+  accountControl: FormControl = new FormControl(0);
 
   expenseCategories = [];
   incomeCategories = [];
@@ -61,7 +61,7 @@ export class NewRecordComponent implements OnInit {
 
     this.accounts$ = this.accountService
       .getUserAccounts()
-      .pipe(tap(accounts => accounts.unshift({ _id: '0', accountName: 'Cash', balance: 0 })));
+      .pipe(tap(accounts => accounts.unshift({ _id: 0, accountName: 'Cash', balance: 0 } as any)));
 
     this.tagFormControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value: string) => {
       // replace any double spaces with single space
@@ -115,6 +115,10 @@ export class NewRecordComponent implements OnInit {
     record.category = this.formGroupHelper.getValue('category');
     record.createdDate = this.time;
     record.accountId = this.formGroupHelper.getValue('accountId');
+
+    // delete accountId if cash is selected
+    if (!record.accountId) delete record.accountId;
+
     return record;
   }
 

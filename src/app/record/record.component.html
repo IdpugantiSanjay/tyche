@@ -3,7 +3,16 @@
     <mat-card-title style="width: 250px">
       {{ record.value }}&#8377;
       <span class="dot" [ngStyle]="{ 'background-color': color }"> </span>
-      <img style="float: right" src="https://img.icons8.com/ios/20/000000/museum-filled.png" />
+      <img
+        *ngIf="record.accountId"
+        style="float: right"
+        src="https://img.icons8.com/ios/20/000000/museum-filled.png"
+      />
+      <img
+        *ngIf="!record.accountId"
+        style="float: right"
+        src="https://img.icons8.com/ios-glyphs/20/000000/money.png"
+      />
       <!-- <img src="https://img.icons8.com/material/20/000000/bank-card-back-side.png" /> -->
     </mat-card-title>
     <mat-card-subtitle>
