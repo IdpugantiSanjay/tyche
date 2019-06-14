@@ -5,9 +5,10 @@ import { MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class ErrorHandlerService implements ErrorHandler {
-  constructor(private snackbar: MatSnackBar) {}
+  constructor(private snackbar: MatSnackBar) { }
 
-  handleError(error: any) {
-    this.snackbar.open(error.message, 'close', { duration: 1000 });
+  handleError(payload: any) {
+    if (payload && payload.error && payload.error.message)
+      this.snackbar.open(payload.error.message, 'close', { duration: 1000 });
   }
 }

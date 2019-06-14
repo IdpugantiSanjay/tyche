@@ -8,15 +8,15 @@ import { ErrorHandlerService } from './error-handler.service';
   providedIn: 'root'
 })
 export class HttpErrorHandlerService implements HttpInterceptor {
-  constructor(private errorHanlder: ErrorHandlerService) {}
+  constructor(private errorHandler: ErrorHandlerService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap(
-        (event: HttpEvent<any>) => {},
+        (event: HttpEvent<any>) => { },
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
-            this.errorHanlder.handleError(err);
+            this.errorHandler.handleError(err);
           }
         }
       )
