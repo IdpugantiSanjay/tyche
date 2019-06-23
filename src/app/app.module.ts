@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -113,7 +114,8 @@ import { AuthenticationInterceptorService } from './services/authentication-inte
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     NgxMaterialTimepickerModule.forRoot(),
     ChartModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [
     ErrorHandlerService,
