@@ -1,66 +1,21 @@
-.accounts {
-  display: flex;
-  flex-wrap: wrap;
+.account-container {
+  margin: 50;
+}
+
+mat-card {
+  min-width: 325px;
 }
 
 .card-container {
   flex: 0 0 25em;
-  max-width: 400px;
+  max-width: 33%;
   margin-top: 5%;
   margin-left: 5%;
 }
 
-.subtitle {
-  border-radius: 2px;
-  color: white;
-  text-align: center;
-  font-weight: bolder;
-}
-
-.positive {
-  background-color: #01a7c2;
-}
-
-.negative {
-  background-color: #ef959d;
-}
-
-.card-content {
-  font-size: 60px;
-}
-
-.aligned-with-icon {
-  position: absolute;
-  margin-top: 5px;
-  margin-left: 5px; /* optional */
-}
-
-.transactions {
-  margin-top: 25px;
-}
-
-.transaction {
-  margin: 5px 5px 5px 5px;
+.accounts {
   display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-}
-
-.transaction > div {
-  flex: 1 1 auto;
-  text-align: center;
-}
-
-.description {
-  width: 100px;
-}
-
-.date {
-  width: 50px;
-}
-
-.cost {
-  width: 75px;
+  flex-wrap: wrap;
 }
 
 .add-account button {

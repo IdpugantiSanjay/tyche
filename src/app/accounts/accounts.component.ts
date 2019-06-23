@@ -21,10 +21,6 @@ export class AccountsComponent implements OnInit {
     this.populateUserAccounts();
   }
 
-  onViewTransactionsClick() {
-    this.showTransactions = !this.showTransactions;
-  }
-
   onAddAccountClickEvent() {
     var dialogRef = this.dialog.open(NewAccountComponent);
     dialogRef

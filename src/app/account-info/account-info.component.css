@@ -1,0 +1,71 @@
+.card-container {
+  flex: 0 0 25em;
+  max-width: 33%;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+.subtitle {
+  border-radius: 2px;
+  color: white;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.positive {
+  background-color: #01a7c2;
+}
+
+.negative {
+  background-color: #ef959d;
+}
+
+.card-content {
+  font-size: 60px;
+}
+
+.aligned-with-icon {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 5px; /* optional */
+}
+
+.transactions {
+  margin-top: 25px;
+}
+
+.transaction {
+  margin: 5px 5px 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.transaction > div {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.description {
+  width: 100px;
+}
+
+.date {
+  width: 75px;
+}
+
+.cost {
+  width: 75px;
+}
+
+@keyframes moveUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}

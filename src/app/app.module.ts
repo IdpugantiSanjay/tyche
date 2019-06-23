@@ -58,6 +58,8 @@ import { TransactionTimelineComponent } from './transaction-timeline/transaction
 import { RecordDeleteConfirmationComponent } from './record-delete-confirmation/record-delete-confirmation.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { NewAccountComponent } from './new-account/new-account.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
+import { AuthenticationInterceptorService } from './services/authentication-interceptor.service';
 
 @NgModule({
   entryComponents: [RecordDeleteConfirmationComponent, NewAccountComponent],
@@ -79,7 +81,8 @@ import { NewAccountComponent } from './new-account/new-account.component';
     TransactionTimelineComponent,
     RecordDeleteConfirmationComponent,
     AccountsComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    AccountInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +120,11 @@ import { NewAccountComponent } from './new-account/new-account.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorHandlerService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptorService,
       multi: true
     },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }

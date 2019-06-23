@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ account.accountName }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="card-content">
+      {{ account.balance }} &#8377;
+      <!-- <i class="material-icons">
+        expand_more
+      </i> -->
+    </div>
+
+    <div style="display: flex">
+      <div class="subtitle positive" style="width: 125px; margin-right: 10px">
+        Cr: 9800 &#8377;
+      </div>
+      <div class="subtitle negative" style="width: 125px">
+        Dr: 6500 &#8377;
+      </div>
+    </div>
+    <div class="transactions" [hidden]="showTransactions">
+      <ng-container *ngFor="let accountTransaction of accountTransactions | async">
+        <div class="transaction">
+          <div class="description">
+            {{ accountTransaction.description }}
+          </div>
+          <div class="date">{{ accountTransaction.createdDate | date }}</div>
+          <div
+            class="cost subtitle"
+            [class.positive]="accountTransaction.type == 1"
+            [class.negative]="accountTransaction.type == 2"
+          >
+            {{ accountTransaction.value }} &#8377;
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <mat-divider></mat-divider>
+    <button mat-button style="color: red; margin-top: 5px" (click)="onViewTransactionsClick()">
+      View Transactions
+    </button>
+  </mat-card-actions>
+</mat-card>
