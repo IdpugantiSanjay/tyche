@@ -10,7 +10,7 @@ export const localhostUrl = `http://localhost:3000/api/`;
 
 export const user = {
   name: ''
-};
+} as any;
 
 export const baseUrl = () => `${localhostUrl}${user.name}/`;
 export const recordUrl = () => `${baseUrl()}records`;

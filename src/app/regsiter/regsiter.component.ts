@@ -38,7 +38,7 @@ export class RegsiterComponent implements OnInit {
       this.authService.registerUser(this.user).subscribe(response => console.log(response));
     }
 
-    function isValidUser(user: User) {
+    function isValidUser(user: Partial<User>) {
       const isTruthy: (x: any) => Boolean = (x: any) => !!x === true;
 
       return pipe(
@@ -48,7 +48,7 @@ export class RegsiterComponent implements OnInit {
     }
   }
 
-  get user(): User {
+  get user(): Partial<User> {
     return {
       username: this.formHelper.getValue('username'),
       password: this.formHelper.getValue('password'),

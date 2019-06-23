@@ -10,6 +10,8 @@ import { tap, filter } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
+  public token: string;
+
   constructor(private httpService: HttpService, private router: Router) {}
 
   canActivate(): boolean {
@@ -20,15 +22,17 @@ export class AuthService implements CanActivate {
     return true;
   }
 
-  public registerUser(user: User) {
+  public registerUser(user: Partial<User>) {
     return this.httpService.postRequest(authUrl(), user);
   }
 
   public loginUser(user: Partial<User>) {
     return this.httpService.postRequest(`${authUrl()}/search`, user).pipe(
       filter<Partial<User>>(response => !!response),
-      tap(response => (user.settings = response.settings)),
-      tap(() => console.log(user.settings))
+      tap(response => {
+        user.settings = response.settings;
+        this.token = response.token;
+      })
     );
   }
 }
