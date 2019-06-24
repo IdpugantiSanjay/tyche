@@ -11,29 +11,34 @@ import { Observable } from 'rxjs';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-  showTransactions: boolean = false;
 
-  accounts: Observable<IAccount[]>;
+  // Observer of Accounts
+  accounts: Observable<Array<IAccount>>;
 
-  constructor(public dialog: MatDialog, private accountService: AccountService) {}
+  constructor(public dialog: MatDialog, private accountService: AccountService) { }
 
   ngOnInit() {
-    this.populateUserAccounts();
+
+    // assign user accounts observer
+    this.accounts = this.accountService.getUserAccounts();
   }
 
+  /**
+   * Fires when user clicked Add Account button
+   */
   onAddAccountClickEvent() {
     var dialogRef = this.dialog.open(NewAccountComponent);
+
+    // save the account details entered by user
     dialogRef
       .afterClosed()
       .pipe(
-        filter((account: IAccount) => !!account),
-        switchMap(account => this.accountService.saveAccount(account)),
-        tap(() => (this.accounts = this.accountService.getUserAccounts()))
+        filter((account: IAccount) => !!account), // do not proceed if cancel is clicked
+        // TODO: probably switch match isn;t the right way here
+        // Replace switchMap with something identical
+        switchMap(account => this.accountService.saveAccount(account)), // Network Request to Save Account Info
+        tap(() => (this.accounts = this.accountService.getUserAccounts())) // Get All User Accounts Including newly added Account
       )
       .subscribe();
-  }
-
-  populateUserAccounts() {
-    this.accounts = this.accountService.getUserAccounts();
   }
 }
