@@ -31,11 +31,6 @@ export class NewRecordComponent implements OnInit {
 
   accounts$: Observable<Array<IAccount>>;
 
-  fieldsConfiguaration = {
-    isAccountEnabled: true,
-    isTagsEnabled: false
-  };
-
   constructor(
     private categoryService: CategoryService,
     private recordsService: RecordsService,
@@ -139,13 +134,7 @@ export class NewRecordComponent implements OnInit {
       time: new FormControl(new Date().toTimeString())
     });
 
-    if (this.fieldsConfiguaration.isTagsEnabled) {
-      form.addControl('tags', this.tagFormControl);
-    }
-
-    if (this.fieldsConfiguaration.isAccountEnabled) {
-      form.addControl('accountId', this.accountControl);
-    }
+    form.addControl('accountId', this.accountControl);
 
     return form;
   }

@@ -42,27 +42,13 @@
           </mat-form-field>
         </p>
 
-        <p
-          *ngIf="fieldsConfiguaration.isAccountEnabled || fieldsConfiguaration.isTagsEnabled"
-          style="max-width: 395px"
-        >
-          <mat-form-field
-            [ngClass]="fieldsConfiguaration.isTagsEnabled ? 'account' : 'full-row'"
-            *ngIf="fieldsConfiguaration.isAccountEnabled"
-          >
+        <p style="max-width: 395px">
+          <mat-form-field class="full-row">
             <mat-select placeholder="Source" formControlName="accountId">
               <mat-option *ngFor="let account of accounts$ | async" [value]="account._id">
                 {{ account.accountName }}
               </mat-option>
             </mat-select>
-          </mat-form-field>
-
-          <mat-form-field
-            [ngClass]="fieldsConfiguaration.isAccountEnabled ? 'tags' : 'full-row'"
-            *ngIf="fieldsConfiguaration.isTagsEnabled"
-          >
-            <mat-label>Tags</mat-label>
-            <input maxlength="36" matInput placeholder="#sunday #dinner" formControlName="tags" />
           </mat-form-field>
         </p>
 
