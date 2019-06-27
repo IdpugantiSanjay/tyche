@@ -1,15 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
 import { MatDividerModule } from '@angular/material/divider';
-
 import { MatDialogModule } from '@angular/material/dialog';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,27 +19,15 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RecordListComponent } from './record-list/record-list.component';
-import { NumericDirective } from './directives/numeric.directive';
-import { MaxLengthDirective } from './directives/max-length.directive';
-import { NewRecordComponent } from './new-record/new-record.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RecordComponent } from './record/record.component';
-import { StatisticsComponent } from './statistics/statistics.component';
-import { HttpErrorHandlerService } from './services/http-error-handler.service';
-import { SettingsComponent } from './settings/settings.component';
-
-import { DateDirective } from './directives/date.directive';
-import { ErrorHandlerService } from './services/error-handler.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ServiceWorkerModule, SwUpdate, SwPush } from '@angular/service-worker';
-import { environment, publicKey } from '../environments/environment';
 
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-
-import { ChartModule, UIChart } from 'primeng/chart';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RecordListComponent } from './record-list/record-list.component';
 import { ChartsComponent } from './chart/chart.component';
 import { LoginComponent } from './login/login.component';
 import { RegsiterComponent } from './regsiter/regsiter.component';
@@ -55,7 +37,24 @@ import { RecordDeleteConfirmationComponent } from './record-delete-confirmation/
 import { AccountsComponent } from './accounts/accounts.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
+import { NewRecordComponent } from './new-record/new-record.component';
+import { RecordComponent } from './record/record.component';
+import { SettingsComponent } from './settings/settings.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+
+import { NumericDirective } from './directives/numeric.directive';
+import { MaxLengthDirective } from './directives/max-length.directive';
+import { DateDirective } from './directives/date.directive';
+
+import { ErrorHandlerService } from './services/error-handler.service';
+import { HttpErrorHandlerService } from './services/http-error-handler.service';
 import { AuthenticationInterceptorService } from './services/authentication-interceptor.service';
+
+import { environment, publicKey } from '../environments/environment';
+
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { ChartModule, UIChart } from 'primeng/chart';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   entryComponents: [RecordDeleteConfirmationComponent, NewAccountComponent],
@@ -129,27 +128,28 @@ import { AuthenticationInterceptorService } from './services/authentication-inte
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(push: SwPush, snackbar: MatSnackBar) {
-    push.messages.subscribe((msg: any) => {
-      const title = msg.title;
+  // constructor(push: SwPush, snackbar: MatSnackBar) {
+  //   push.messages.subscribe((msg: any) => {
+  //     const title = msg.title;
 
-      Notification.requestPermission().then(() => {
-        if (Notification.permission === 'granted') {
-          new Notification(JSON.stringify(title));
-        }
-      });
-    });
+  //     Notification.requestPermission().then(() => {
+  //       if (Notification.permission === 'granted') {
+  //         new Notification(JSON.stringify(title));
+  //       }
+  //     });
+  //   });
 
-    push.requestSubscription({ serverPublicKey: publicKey }).then(pushSubscription => send(pushSubscription));
-  }
+  //   push.requestSubscription({ serverPublicKey: publicKey }).then(pushSubscription => send(pushSubscription));
+  // }
+  constructor() {}
 }
 
-async function send(pushSubscription: PushSubscription) {
-  await fetch('http://localhost:3000/subscribe', {
-    method: 'POST',
-    body: JSON.stringify(pushSubscription),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-}
+// async function send(pushSubscription: PushSubscription) {
+//   await fetch('http://localhost:3000/subscribe', {
+//     method: 'POST',
+//     body: JSON.stringify(pushSubscription),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   });
+// }

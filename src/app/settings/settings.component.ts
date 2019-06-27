@@ -20,9 +20,11 @@ import { Observable } from 'rxjs';
 export class SettingsComponent implements OnInit {
   form: FormGroup;
   featuresForm: FormGroup;
+  accountsForm: FormGroup;
 
   formHelper: FormGroupHelper;
   featuresFormHelper: FormGroupHelper;
+  accountsFormHelper: FormGroupHelper;
 
   accounts: Observable<Array<IAccount>>;
 
@@ -36,9 +38,11 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.form = this.formGroup;
     this.featuresForm = this.featuresFromGroup;
+    this.accountsForm = this.accountsFormGroup;
 
     this.formHelper = new FormGroupHelper(this.form);
     this.featuresFormHelper = new FormGroupHelper(this.featuresForm);
+    this.accountsFormHelper = new FormGroupHelper(this.accountsForm);
 
     this.budgetsService.budgets().subscribe((budgets: Budget[]) => {
       for (const budget of budgets) {
@@ -112,10 +116,26 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  get accountsFormGroup() {
+    return new FormGroup({
+      balance: new FormControl()
+    });
+  }
+
   public onAccountDeleteClick(account: IAccount) {
     this.accountsService
       .deleteUserAccount(account)
       .pipe(tap(() => (this.accounts = this.accountsService.getUserAccounts())))
+      .subscribe();
+  }
+
+  public accountBalanceFocusOut(account: IAccount) {
+    this.accountsService
+      .updateUserAccount(account)
+      .pipe(
+        tap((response: IAccount) => (account = response)),
+        switchMap(() => (this.accounts = this.accountsService.getUserAccounts()))
+      )
       .subscribe();
   }
 }

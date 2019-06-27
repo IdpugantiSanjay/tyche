@@ -99,17 +99,36 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <ng-container *ngFor="let account of accounts | async">
-        <div class="account-list-container">
-          <i class="material-icons" id="account-icon">
-            account_balance
-          </i>
-          <span class="account-name aligned-with-icon">
-            {{ account.accountName }}
-          </span>
-          <i class="material-icons account-delete-icon" (click)="onAccountDeleteClick(account)">
-            delete
-          </i>
-        </div>
+        <form [formGroup]="accountsForm">
+          <div class="account-list-container">
+            <i class="material-icons" id="account-icon">
+              account_balance
+            </i>
+            <span class="account-name aligned-with-icon">
+              {{ account.accountName }}
+            </span>
+            <span>
+              <mat-form-field
+                appearance="outline"
+                style="display: inline-block; margin: 10px; margin-top: 25px"
+              >
+                <mat-label>Balance</mat-label>
+                <input
+                  matInput
+                  numeric
+                  maxlength="5"
+                  formControlName="balance"
+                  [(value)]="account.balance"
+                  (focusout)="accountBalanceFocusOut(account)"
+                />
+                <!-- <span matPrefix>&#8377;&nbsp;</span> <span matSuffix> .00 </span> -->
+              </mat-form-field>
+            </span>
+            <i class="material-icons account-delete-icon" (click)="onAccountDeleteClick(account)">
+              delete
+            </i>
+          </div>
+        </form>
       </ng-container>
       <br />
       <br />

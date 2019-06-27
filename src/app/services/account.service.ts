@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
 import { localhostUrl } from 'src/environments/environment';
 import { user } from 'src/environments/environment.prod';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +21,9 @@ export class AccountService {
 
   public deleteUserAccount(account: IAccount) {
     return this.httpService.deleteRequest(`${this.accountEndPoint}/${account._id}`);
+  }
+
+  public updateUserAccount(account: IAccount) {
+    return this.httpService.putRequest(`${this.accountEndPoint}/${account._id}`, account);
   }
 }
