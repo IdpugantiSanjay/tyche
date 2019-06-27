@@ -4,7 +4,7 @@ import { IRecord, Records } from '../models/record';
 import { Observable } from 'rxjs';
 import { switchMap, tap, debounceTime, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { RecordDeleteConfirmationComponent } from '../record-delete-confirmation/record-delete-confirmation.component';
 
 @Component({

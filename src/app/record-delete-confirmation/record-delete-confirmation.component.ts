@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from 'src/environments/environment.prod';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-record-delete-confirmation',

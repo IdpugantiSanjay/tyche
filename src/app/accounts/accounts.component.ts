@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { NewAccountComponent } from '../new-account/new-account.component';
 import { filter, switchMap, tap } from 'rxjs/operators';
 import { AccountService } from '../services/account.service';
