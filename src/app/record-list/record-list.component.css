@@ -16,7 +16,7 @@
   /* grid-auto-rows: minmax(100px, auto); */
 
   grid-column-gap: 10px;
-  grid-row-gap: 10px;
+  grid-row-gap: 25px;
 
   margin: 1% 1% 1% 1%;
 
