@@ -5,7 +5,7 @@
 .content {
   flex: 4;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
   /* grid-template-rows: repeat(auto-fit, 250px); */
   /* grid-column-gap: 2em; */
@@ -18,7 +18,7 @@
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 
-  margin: 1% 1% 1% 1%;
+  margin: 1%;
 }
 
 .card {
