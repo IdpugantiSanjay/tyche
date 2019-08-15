@@ -129,7 +129,7 @@ export class NewRecordComponent implements OnInit {
       type: new FormControl(2, Validators.compose([Validators.required])),
       category: new FormControl('Food and Drinks', Validators.compose([Validators.required])),
       amount: new FormControl('', Validators.compose([Validators.required])),
-      reason: new FormControl('', Validators.maxLength(120)),
+      reason: new FormControl(''),
       date: new FormControl(new Date(), Validators.required),
       time: new FormControl(new Date().toTimeString())
     });
