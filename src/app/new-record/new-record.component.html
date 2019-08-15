@@ -1,10 +1,10 @@
-<div class="container" align="center">
+<div class="container" fxFlex fxLayoutAlign="center center">
   <mat-card class="card">
     <mat-card-content>
-      <form [formGroup]="form">
+      <form [formGroup]="form" fxLayout="column" fxLayoutGap="2px">
         <!-- Record Type and Category Start -->
-        <p>
-          <mat-form-field style="width: 120px">
+        <div fxLayout="row" fxLayoutGap="2.5%" fxLayout.xs="column">
+          <mat-form-field fxFlex="1 1 35%">
             <mat-select
               placeholder="Transaction Type"
               formControlName="type"
@@ -15,51 +15,51 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <mat-form-field style="width: 250px">
+          <mat-form-field fxFlex="1 1 60%">
             <mat-select placeholder="Category" formControlName="category">
               <mat-option *ngFor="let category of categories" [value]="category.name">
                 {{ category.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </p>
+        </div>
         <!-- Record Type and Category End -->
 
         <!-- Amount and Description Start -->
-        <p>
-          <mat-form-field style="width: 120px">
+        <div fxLayout="row" fxLayoutGap="2.5%" fxLayout.xs="column">
+          <mat-form-field fxFlex="1 1 35%">
             <mat-label>Amount</mat-label>
             <input matInput numeric maxlength="5" placeholder="120" formControlName="amount" autofocus />
             <span matPrefix>&#8377;&nbsp;</span> <span matSuffix> .00 </span>
           </mat-form-field>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <mat-form-field style="width: 250px">
-            <mat-label>Description</mat-label>
-            <input
-              maxlength="36"
-              matInput
-              placeholder="Dinner at favorite restaurant"
-              formControlName="reason"
-            />
-          </mat-form-field>
-        </p>
-        <!-- Amount and Description End -->
 
-        <!-- Income Source Start -->
-        <p style="max-width: 395px">
-          <mat-form-field class="full-row">
+          <mat-form-field class="full-row" fxFlex="1 1 60%">
             <mat-select placeholder="Source" formControlName="accountId">
               <mat-option *ngFor="let account of accounts$ | async" [value]="account._id">
                 {{ account.accountName }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </p>
+        </div>
+        <!-- Amount and Description End -->
+
+        <!-- Income Source Start -->
+        <div fxLayout="row" fxLayoutGap="2.5%" fxLayout.xs="column">
+          <mat-form-field fxFlex="1 1 100%">
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              placeholder="Dinner at favorite restaurant"
+              formControlName="reason"
+              rows="3"
+              class="description"
+            ></textarea>
+          </mat-form-field>
+        </div>
         <!-- Income Source End -->
 
         <!-- Date and Time Start -->
-        <p>
+        <div fxLayout="row" fxLayoutGap="2.5%" fxLayout.xs="column">
           <mat-form-field>
             <input
               matInput
@@ -73,7 +73,6 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-          &nbsp; &nbsp;
 
           <mat-form-field>
             <input
@@ -86,14 +85,13 @@
             />
             <ngx-material-timepicker #default></ngx-material-timepicker>
           </mat-form-field>
-        </p>
+        </div>
         <!-- Date and Time End -->
 
-        <div style="padding: 0.5%">
+        <div fxLayout="row" fxLayoutGap="5%">
           <button mat-raised-button color="primary" (click)="onSubmitButtonClick()" [disabled]="!form.valid">
             Submit
           </button>
-          &nbsp;
           <!-- <button mat-raised-button>Submit+</button> &nbsp; -->
           <button mat-raised-button color="warn" (click)="onClearButtonClick()">
             Clear
