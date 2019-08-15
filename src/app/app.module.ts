@@ -55,6 +55,8 @@ import { environment, publicKey } from '../environments/environment';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ChartModule, UIChart } from 'primeng/chart';
 import { AppRoutingModule } from './app-routing.module';
+import { RecordColorDirective } from './directives/record-color.directive';
+import { RecordEventsDirective } from './directives/record-events.directive';
 
 @NgModule({
   entryComponents: [RecordDeleteConfirmationComponent, NewAccountComponent],
@@ -77,7 +79,9 @@ import { AppRoutingModule } from './app-routing.module';
     RecordDeleteConfirmationComponent,
     AccountsComponent,
     NewAccountComponent,
-    AccountInfoComponent
+    AccountInfoComponent,
+    RecordColorDirective,
+    RecordEventsDirective
   ],
   imports: [
     BrowserModule,

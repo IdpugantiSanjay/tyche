@@ -15,7 +15,7 @@ export class AuthService implements CanActivate {
   constructor(private httpService: HttpService, private router: Router) {}
 
   canActivate(): boolean {
-    if (!!!user.name) {
+    if (!user.name) {
       this.router.navigate(['login']);
       return false;
     }

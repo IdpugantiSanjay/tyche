@@ -1,8 +1,8 @@
-<mat-card class="card" (mouseover)="this.isFocused = true" (mouseleave)="this.isFocused = false">
+<mat-card class="card" appRecordEvents>
   <mat-card-header>
     <mat-card-title style="width: 250px">
       {{ record.value }}&#8377;
-      <span class="dot" [ngStyle]="{ 'background-color': color }"> </span>
+      <span appRecordColor [record]="record" class="dot"> </span>
       <img
         *ngIf="record.accountId"
         style="float: right"
@@ -34,7 +34,7 @@
       </span>
     </div> -->
   </mat-card-content>
-  <mat-card-actions [ngClass]="isFocused ? 'show' : 'hide'" style="z-index: 1">
+  <mat-card-actions style="z-index: 1" class="hide" id="recordActions">
     <div>
       <button mat-button>
         <i class="material-icons">
