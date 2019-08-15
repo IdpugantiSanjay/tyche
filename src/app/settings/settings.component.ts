@@ -89,10 +89,7 @@ export class SettingsComponent implements OnInit {
   private saveUserSettings(keyValuePair) {
     this.settingsService
       .saveSettings(keyValuePair)
-      .pipe(
-        filter((settings: any) => !!settings),
-        tap(settings => (settings = settings))
-      )
+      .pipe(filter((settings: any) => Boolean(settings)))
       .subscribe((settings: any) => {
         if (settings) {
           this.settingsService.emitAccountSettingChangedEvent(settings.isAccountEnabled);
