@@ -36,7 +36,7 @@ export class RecordListComponent implements OnInit {
 
     dialog
       .afterClosed()
-      .pipe(filter(result => !!result))
+      .pipe(filter(result => Boolean(result)))
       .subscribe(() => this.deleteRecord(record).subscribe());
   }
 
