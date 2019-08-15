@@ -25,6 +25,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ServiceWorkerModule, SwUpdate, SwPush } from '@angular/service-worker';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RecordListComponent } from './record-list/record-list.component';
@@ -113,7 +115,8 @@ import { RecordEventsDirective } from './directives/record-events.directive';
     NgxMaterialTimepickerModule.forRoot(),
     ChartModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FlexLayoutModule
   ],
   providers: [
     ErrorHandlerService,
