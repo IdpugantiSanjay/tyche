@@ -31,10 +31,7 @@ export class RecordsService {
   }
 
   public searchRecords(searchParams?) {
-    return this.httpService.getRequest<Records>(
-      this.endpoint,
-      new HttpParams({ fromObject: searchParams })
-    );
+    return this.httpService.getRequest<Records>(this.endpoint, new HttpParams({ fromObject: searchParams }));
   }
 
   public deleteRecord(record: IRecord) {
@@ -57,6 +54,10 @@ export class RecordsService {
       undefined,
       new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8')
     );
+  }
+
+  public importRecords({ importData }) {
+    return this.httpService.postRequest(`${this.endpoint}/import`, { importData });
   }
 
   public statistics() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { RecordsService } from '../services/records.service';
 
 import * as _ from 'lodash';
@@ -32,7 +32,8 @@ export class SettingsComponent implements OnInit {
     private recordsService: RecordsService,
     private budgetsService: BudgetService,
     private settingsService: SettingsService,
-    private accountsService: AccountService
+    private accountsService: AccountService,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -134,6 +135,28 @@ export class SettingsComponent implements OnInit {
         switchMap(() => (this.accounts = this.accountsService.getUserAccounts()))
       )
       .subscribe();
+  }
+
+  public onImportButtonClick() {
+    var fileInputElement = this.renderer.createElement('input');
+    fileInputElement.setAttribute('type', 'file');
+    fileInputElement.setAttribute('accept', '.csv');
+
+    this.renderer.listen(fileInputElement, 'change', this.readCSVFile.bind(this));
+
+    fileInputElement.click();
+  }
+
+  readCSVFile(event) {
+    var input = event.target;
+    var reader = new FileReader();
+
+    reader.onload = () => {
+      this.recordsService.importRecords({ importData: reader.result }).subscribe();
+    };
+
+    var uploadedFile = input.files[0];
+    if (uploadedFile.type == 'text/csv') reader.readAsText(uploadedFile);
   }
 }
 
