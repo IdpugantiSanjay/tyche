@@ -37,6 +37,7 @@ export class AuthService implements CanActivate {
   }
 
   public redirectToLogin() {
+    this.token = null;
     this.router.navigate(['login']);
   }
 }
