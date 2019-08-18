@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { SettingsService } from '../services/settings.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,11 @@ export class HomeComponent implements OnInit {
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
 
-  constructor(private breakpointObserver: BreakpointObserver, private settingsService: SettingsService) {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private settingsService: SettingsService,
+    private authService: AuthService
+  ) {
     this.settingsService.accountSettingChanged$.subscribe(result => {
       this.enableAccount = result;
     });
@@ -28,4 +33,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onLogoutClick() {
+    this.authService.redirectToLogin();
+  }
 }

@@ -35,4 +35,8 @@ export class AuthService implements CanActivate {
       })
     );
   }
+
+  public redirectToLogin() {
+    this.router.navigate(['login']);
+  }
 }

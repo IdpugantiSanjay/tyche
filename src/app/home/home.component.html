@@ -10,7 +10,7 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/home/new-record"><i class="material-icons"> note_add </i></a>
-      <a mat-list-item routerLink="/home/list"><i class="material-icons"> list_alt </i></a>
+      <a mat-list-item routerLink="/home/list"><i class="material-icons"> dashboard </i></a>
       <!-- <a mat-list-item routerLink="/home/search"><i class="material-icons"> search </i></a> -->
       <!-- <a mat-list-item routerLink="/home/charts"><i class="material-icons"> show_chart </i></a> -->
       <!-- <a mat-list-item routerLink="/home/group"><i class="material-icons"> group </i></a> -->
@@ -32,6 +32,19 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>tyche</span>
+
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap="15px">
+        <mat-icon matBadge="22" matBadgePosition="above after">
+          <i class="material-icons">
+            notifications_none
+          </i>
+        </mat-icon>
+        <mat-icon>
+          <i class="material-icons" (click)="onLogoutClick()">
+            exit_to_app
+          </i>
+        </mat-icon>
+      </div>
     </mat-toolbar>
 
     <div class="container"><router-outlet></router-outlet></div>

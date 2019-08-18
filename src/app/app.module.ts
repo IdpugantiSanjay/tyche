@@ -12,6 +12,8 @@ import { MatOptionModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -116,7 +118,8 @@ import { RecordEventsDirective } from './directives/record-events.directive';
     ChartModule,
     MatDialogModule,
     MatTooltipModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatBadgeModule
   ],
   providers: [
     ErrorHandlerService,
